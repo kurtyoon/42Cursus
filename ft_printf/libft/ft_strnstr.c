@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:27:02 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/22 16:36:57 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/07/24 16:59:35 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,27 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
 	size_t	j;
+	size_t	needle_len;
 
-	if (haystack == 0 && needle == 0)
-		return (0);
-	if (ft_strlen(needle) == 0)
-		return ((char *)haystack);
-	if (len == 0)
-		return (0);
 	i = 0;
-	while (haystack[i] != '\0' && i < len)
+	needle_len = ft_strlen(needle);
+	if (!*needle)
+		return ((char *)haystack);
+	while (haystack[i])
 	{
-		j = 0;
-		while (haystack[i] == needle[j])
+		if (haystack[i] == needle[0])
 		{
-			if (needle[j + 1] == '\0' && i < len)
-				return ((char *)haystack + i - j);
-			j++;
-			i++;
+			j = 0;
+			while (needle[j] && haystack[i + j] && (i + j) < len)
+			{
+				if (haystack[i + j] != needle[j])
+					break ;
+				else if (j + 1 == needle_len)
+					return ((char *)haystack + i);
+				j++;
+			}
 		}
-		i = i - j + 1;
-		j = 0;
+		i++;
 	}
-	return (0);
+	return (NULL);
 }

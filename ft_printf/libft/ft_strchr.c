@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:26:37 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/22 15:57:49 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/07/24 17:11:28 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *)(s + i));
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

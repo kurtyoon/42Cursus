@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:25:57 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/22 15:57:44 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/07/24 16:45:45 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	buf_src = (unsigned char *)src;
 	buf_dst = (unsigned char *)dst;
 	if (dst == 0 && src == 0)
-		return (0);
+		return (NULL);
 	while (i < len)
 	{
 		if (src > dst)

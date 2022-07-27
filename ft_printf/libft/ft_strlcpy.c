@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:26:01 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/22 17:10:46 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/07/27 16:06:57 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,20 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
+	size_t	srcsize;
 	size_t	i;
-	size_t	len;
 
-	if (!src || !dst)
-		return (0);
-	len = 0;
-	while (src[len])
-		len++;
-	if (dstsize == 0)
-		return (len);
+	srcsize = ft_strlen(src);
 	i = 0;
-	while (i < dstsize - 1 && src[i])
+	if (!dst || !src)
+		return (0);
+	if (dstsize == 0)
+		return (srcsize);
+	while (src[i] && i + 1 < dstsize)
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
-	return (len);
+	return (srcsize);
 }

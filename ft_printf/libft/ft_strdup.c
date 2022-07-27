@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:27:20 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/22 15:57:49 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/07/27 16:03:42 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 char	*ft_strdup(const char *s1)
 {
-	size_t	i;
 	char	*copy;
+	int		len;
+	int		i;
 
 	i = 0;
-	if (!s1)
-		return (0);
-	copy = (char *)malloc((ft_strlen(s1) + 1) * sizeof(char));
+	len = ft_strlen(s1);
+	copy = (char *)malloc(sizeof(char) * (len + 1));
 	if (!copy)
-		return (0);
+		return (NULL);
 	while (s1[i])
 	{
 		copy[i] = s1[i];
