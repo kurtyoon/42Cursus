@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 15:11:25 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/24 16:13:57 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/04 19:48:29 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*read_and_store(int fd, char *backup)
 	int		rbytes;
 
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
+		return (NULL);
 	rbytes = 1;
 	while (rbytes != 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 15:12:26 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/24 16:13:26 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/04 22:01:30 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*get_next_line(int fd)
 	char		*buf;
 	static char	*backup[256];
 
-	if (fd < 0 || fd + 1 > 256 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd + 1 > 266 || BUFFER_SIZE <= 0)
 		return (NULL);
 	backup[fd] = read_and_store(fd, backup[fd]);
 	if (!backup[fd])
