@@ -66,6 +66,7 @@ ifdef WITH_BONUS
 endif
 
 all : $(NAME)
+	sleep 1
 
 .c.o : $(SRCS)
 	$(CC) $(CFLAGS) -c -o $@ $<

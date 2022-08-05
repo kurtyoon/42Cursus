@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:27:14 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/24 17:06:25 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/05 20:03:45 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
 
-	ptr = (void *)malloc(count * size);
+	if (count <= 0 || size <= 0)
+		ptr = (void *)malloc(1);
+	else
+		ptr = (void *)malloc(count * size);
 	if (!ptr)
 		return (NULL);
 	ft_bzero(ptr, count * size);
