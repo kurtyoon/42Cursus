@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:22:06 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/22 15:57:52 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/05 17:42:33 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*str;
 
 	i = 0;
-	if (!s || !f)
-		return (NULL);
 	len = ft_strlen(s);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)

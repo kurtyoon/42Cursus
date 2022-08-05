@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:32:15 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/24 17:32:35 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/05 17:44:13 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	size_t	s_len;
 	char	*substr;
 	size_t	i;
 
-	if (len >= ft_strlen(s))
-		len = ft_strlen(s);
-	if (start >= ft_strlen(s))
+	s_len = ft_strlen(s);
+	if (len >= s_len)
+		len = s_len;
+	if (start >= s_len)
 		return (ft_strdup(""));
 	substr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!s || !substr)

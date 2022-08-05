@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:27:02 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/24 16:59:35 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/05 18:15:27 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 			{
 				if (haystack[i + j] != needle[j])
 					break ;
-				else if (j + 1 == needle_len)
-					return ((char *)haystack + i);
 				j++;
 			}
+			if (j == needle_len)
+				return ((char *)haystack + i);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:32:35 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/22 15:57:50 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/05 17:43:13 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	else if (!s1 || !s2)
 	{
 		if (!s1)
-			return ((char *)s2);
+			return (ft_strdup(s2));
 		else
-			return ((char *)s1);
+			return (ft_strdup(s1));
 	}
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
