@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 15:12:32 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/04 21:53:33 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/06 01:32:47 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,45 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	int		i;
-	int		j;
-	char	*str;
+	size_t	i;
+	size_t	dst_len;
+	size_t	src_len;
 
-	if (!s1)
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	i = 0;
+	if (dstsize < dst_len + 1)
+		return (dstsize + src_len);
+	if (dstsize > dst_len + 1)
 	{
-		s1 = (char *)malloc(sizeof(char));
-		s1[0] = '\0';
+		while (src[i] && dst_len + i + 1 < dstsize)
+		{
+			dst[dst_len + i] = src[i];
+			i++;
+		}
 	}
-	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!s1 || !s2 || !str)
-		return (NULL);
-	i = -1;
-	while (s1[++i])
-		str[i] = s1[i];
-	j = 0;
-	while (s2[j])
+	dst[dst_len + i] = '\0';
+	return (dst_len + src_len);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	srcsize;
+	size_t	i;
+
+	srcsize = ft_strlen(src);
+	i = 0;
+	if (!dst || !src)
+		return (0);
+	if (dstsize == 0)
+		return (srcsize);
+	while (src[i] && i + 1 < dstsize)
 	{
-		str[i + j] = s2[j];
-		j++;
+		dst[i] = src[i];
+		i++;
 	}
-	str[i + j] = '\0';
-	free(s1);
-	return (str);
+	dst[i] = '\0';
+	return (srcsize);
 }

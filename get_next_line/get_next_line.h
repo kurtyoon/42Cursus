@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 15:11:31 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/03 21:21:15 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/06 17:09:56 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5000
+#  define BUFFER_SIZE 42
 # endif
 
 char	*get_next_line(int fd);
@@ -27,6 +27,7 @@ char	*read_and_store(int fd, char *backup);
 
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char *s1, char *s2);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 #endif

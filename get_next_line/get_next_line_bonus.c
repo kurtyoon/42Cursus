@@ -6,11 +6,36 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 15:12:26 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/04 22:01:30 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/08 17:56:27 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*store_buf(char *buf, char *backup)
+{
+	char	*new_backup;
+	int		new_len;
+
+	if (!backup)
+	{
+		backup = (char *)malloc(sizeof(char));
+		backup[0] = '\0';
+	}
+	if (!backup)
+		return (NULL);
+	new_len = ft_strlen(buf) + ft_strlen(backup);
+	new_backup = (char *)malloc(sizeof(char) * (new_len + 1));
+	if (!new_backup)
+	{
+		free(backup);
+		return (NULL);
+	}
+	ft_strlcpy(new_backup, backup, new_len + 1);
+	ft_strlcat(new_backup, buf, new_len + 1);
+	free(backup);
+	return (new_backup);
+}
 
 char	*read_and_store(int fd, char *backup)
 {
@@ -27,10 +52,11 @@ char	*read_and_store(int fd, char *backup)
 		if (rbytes == -1)
 		{
 			free(buf);
+			free(backup);
 			return (NULL);
 		}
 		buf[rbytes] = '\0';
-		backup = ft_strjoin(backup, buf);
+		backup = store_buf(buf, backup);
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
@@ -65,28 +91,31 @@ char	*get_line(char *backup)
 
 char	*backup_next(char *backup)
 {
-	char	*buf;
+	char	*new_backup;
 	int		i;
 	int		j;
 
 	i = 0;
 	while (backup[i] && backup[i] != '\n')
 		i++;
-	if (!backup[i])
+	if (backup[i] != '\n')
 	{
 		free(backup);
 		return (NULL);
 	}
-	buf = (char *)malloc(sizeof(char) * (ft_strlen(backup) - i + 1));
-	if (!buf)
+	new_backup = (char *)malloc(sizeof(char) * (ft_strlen(backup) - i));
+	if (!new_backup)
+	{
+		free(backup);
 		return (NULL);
+	}
 	i++;
 	j = 0;
 	while (backup[i])
-		buf[j++] = backup[i++];
-	buf[j] = '\0';
+		new_backup[j++] = backup[i++];
+	new_backup[j] = '\0';
 	free(backup);
-	return (buf);
+	return (new_backup);
 }
 
 char	*get_next_line(int fd)
@@ -94,7 +123,7 @@ char	*get_next_line(int fd)
 	char		*buf;
 	static char	*backup[256];
 
-	if (fd < 0 || fd + 1 > 266 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd + 1 > 256 || BUFFER_SIZE <= 0)
 		return (NULL);
 	backup[fd] = read_and_store(fd, backup[fd]);
 	if (!backup[fd])
