@@ -2,7 +2,7 @@ NAME = libftprintf.a
 LIBFT = libft
 LIBFT_LIB = libft.a
 
-SRCS = ./ft_printf.c ./ft_format.c ./ft_parse.c ./ft_print_chars.c ./ft_print_hex.c ./ft_print_nbrs.c
+SRCS = ./ft_printf.c ./ft_format.c ./ft_parse.c ./ft_print_chars.c ./ft_print_hex.c ./ft_print_nbrs.c ./ft_print_point.c
 OBJS = $(SRCS:.c=.o)
 INCS = .
 AR = ar rcs
@@ -27,6 +27,8 @@ fclean: clean
 clean:
 	$(RM) $(OBJS)
 	make clean -C $(LIBFT)
+
+bonus: $(NAME)
 
 re: fclean all
 

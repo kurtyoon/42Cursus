@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:26:57 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/22 15:57:43 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/08 18:31:53 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	p2 = (unsigned char *)s2;
 	while (i + 1 < n && p1[i] == p2[i])
 		i++;
-	return ((int)(p1[i] - p2[i]));
+	return ((p1[i] - p2[i]));
 }

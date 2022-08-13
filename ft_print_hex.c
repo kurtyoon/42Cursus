@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/05 01:33:29 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/05 01:42:58 by cyun             ###   ########seoul.kr  */
+/*   Created: 2022/08/09 21:30:04 by cyun              #+#    #+#             */
+/*   Updated: 2022/08/13 05:28:15 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,33 @@ int	ft_nbrlen(long n, int base)
 
 int	ft_recursive_hex(t_format f, size_t n, size_t iteration)
 {
-	int		count;
+	int		print_len;
 	int		remainder;
 	char	character;
 
-	count = 0;
+	print_len = 0;
 	if (n > 0 || (!iteration && (f.specifier != 'p' || !f.dot)))
 	{
 		remainder = n % 16;
-		if (f.specifier != 'X')
-			character = HEXLOW[remainder];
-		else
+		if (f.specifier == 'X')
 			character = HEXUP[remainder];
+		else
+			character = HEXLOW[remainder];
 		n /= 16;
 		iteration = 1;
-		count += ft_recursive_hex(f, n, iteration);
-		count += ft_printchar(character);
+		print_len += ft_recursive_hex(f, n, iteration);
+		print_len += ft_printchar(character);
 	}
-	return (count);
+	return (print_len);
 }
 
 int	ft_print_x(t_format f, va_list ap)
 {
-	int				count;
+	int				print_len;
 	unsigned int	n;
 	int				len;
 
-	count = 0;
+	print_len = 0;
 	n = va_arg(ap, unsigned int);
 	len = ft_nbrlen(n, 16);
 	if (!n && !f.precision && f.dot)
@@ -73,44 +73,16 @@ int	ft_print_x(t_format f, va_list ap)
 		f.precision = len;
 	if (f.sharp && n)
 		f.width -= 2;
-	count += ft_printstrn(ft_sharp(f), 2 * (f.sharp && f.zero && n));
+	print_len += ft_printnstr(ft_sharp(f), 2 * (f.sharp && !f.dot && n));
 	if (!f.minus && f.width > f.precision && (!f.dot || f.neg_prec) && f.zero)
-		count += ft_printnchar('0', (f.width - f.precision));
+		print_len += ft_printnchar('0', (f.width - f.precision));
 	else if (!f.minus && f.width > f.precision)
-		count += ft_printnchar(' ', (f.width - f.precision));
-	count += ft_printstrn(ft_sharp(f), 2 * (f.sharp && !f.zero && n));
-	count += ft_printnchar('0', (f.precision - len));
+		print_len += ft_printnchar(' ', (f.width - f.precision));
+	print_len += ft_printnstr(ft_sharp(f), 2 * (f.sharp && f.dot && n));
+	print_len += ft_printnchar('0', (f.precision - len));
 	if (len)
-		count += ft_recursive_hex(f, n, n);
+		print_len += ft_recursive_hex(f, n, n);
 	if (f.minus && f.width > f.precision)
-		count += ft_printnchar(' ', f.width - f.precision);
-	return (count);
-}
-
-int	ft_print_p(t_format f, va_list ap)
-{
-	int		count;
-	size_t	n;
-	int		len;
-
-	count = 0;
-	n = va_arg(ap, size_t);
-	len = ft_nbrlen(n, 16);
-	len *= !(!n && !f.precision && f.dot);
-	if (f.precision < len || !f.dot)
-		f.precision = len;
-	count += write(1, "0x", 2 * f.zero);
-	f.width -= 2;
-	if (!f.minus && f.width > f.precision && !f.dot && f.zero)
-		count += ft_printnchar('0', (f.width - f.precision));
-	else if (!f.minus && f.width > f.precision)
-		count += ft_printnchar(' ', (f.width - f.precision));
-	count += write(1, "0x", 2 * !f.zero);
-	count += ft_printnchar('0', (f.precision - len) * (n != 0));
-	count += ft_printnchar('0', f.precision * (f.dot && !n));
-	if (len)
-		count += ft_recursive_hex(f, n, n);
-	if (f.minus && f.width > f.precision)
-		count += ft_printnchar(' ', f.width - f.precision);
-	return (count);
+		print_len += ft_printnchar(' ', f.width - f.precision);
+	return (print_len);
 }

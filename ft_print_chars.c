@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/05 01:17:44 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/05 01:43:01 by cyun             ###   ########seoul.kr  */
+/*   Created: 2022/08/09 21:29:52 by cyun              #+#    #+#             */
+/*   Updated: 2022/08/11 01:03:47 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ int	ft_printchar(int c)
 
 int	ft_printnchar(int c, int n)
 {
-	int	count;
+	int	print_len;
 
-	count = 0;
+	print_len = 0;
 	while (n-- > 0)
-		count += (int)write(1, &c, 1);
-	return (count);
+		print_len += (int)write(1, &c, 1);
+	return (print_len);
 }
 
-int	ft_printstrn(char *str, int n)
+int	ft_printnstr(char *str, int n)
 {
 	if (str != NULL)
 		return ((int)write(1, str, n));
@@ -38,41 +38,41 @@ int	ft_printstrn(char *str, int n)
 int	ft_print_c_pct(t_format f, va_list ap)
 {
 	char	c;
-	int		count;
+	int		print_len;
 
-	count = 0;
+	print_len = 0;
 	if (f.specifier == 'c')
 		c = va_arg(ap, int);
 	else
 		c = '%';
 	f.precision = 1;
 	if (!f.minus && f.zero)
-		count += ft_printnchar('0', f.width - f.precision);
+		print_len += ft_printnchar('0', f.width - f.precision);
 	else if (!f.minus && f.width > f.precision)
-		count += ft_printnchar(' ', f.width - f.precision);
-	count += ft_printchar(c);
-	if (f.minus && f.width - f.precision < 0)
-		count += ft_printnchar(' ', f.width - f.precision);
-	return (count);
+		print_len += ft_printnchar(' ', f.width - f.precision);
+	print_len += ft_printchar(c);
+	if (f.minus && f.width > f.precision)
+		print_len += ft_printnchar(' ', f.width - f.precision);
+	return (print_len);
 }
 
 int	ft_print_s(t_format f, va_list ap)
 {
 	char	*string;
-	int		count;
+	int		print_len;
 
-	count = 0;
+	print_len = 0;
 	string = va_arg(ap, char *);
 	if (!string)
 		string = "(null)";
 	if (!f.dot || f.precision > (int)ft_strlen(string) || f.precision < 0)
 		f.precision = ft_strlen(string);
-	if (!f.minus && f.width > f.precision && f.zero && (!f.dot || f.neg_prec))
-		count += ft_printnchar('0', f.width - f.precision);
-	else if (!f.minus && f.width - f.precision > 0)
-		count += ft_printnchar(' ', f.width - f.precision);
-	count += ft_printstrn(string, f.precision);
-	if (f.minus && f.width - f.precision > 0)
-		count += ft_printnchar(' ', f.width - f.precision);
-	return (count);
+	if (!f.minus && f.width > f.precision && f.zero)
+		print_len += ft_printnchar('0', f.width - f.precision);
+	else if (!f.minus && f.width > f.precision)
+		print_len += ft_printnchar(' ', f.width - f.precision);
+	print_len += ft_printnstr(string, f.precision);
+	if (f.minus && f.width > f.precision)
+		print_len += ft_printnchar(' ', f.width - f.precision);
+	return (print_len);
 }

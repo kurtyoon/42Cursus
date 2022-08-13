@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/05 01:01:35 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/05 01:43:14 by cyun             ###   ########seoul.kr  */
+/*   Created: 2022/08/09 21:29:25 by cyun              #+#    #+#             */
+/*   Updated: 2022/08/10 23:45:41 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ t_format	ft_newformat(void)
 	newformat.space = 0;
 	newformat.sharp = 0;
 	newformat.neg_prec = 0;
+	newformat.neg = 0;
 	return (newformat);
 }

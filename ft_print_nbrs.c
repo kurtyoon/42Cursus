@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/05 01:24:50 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/05 01:44:17 by cyun             ###   ########seoul.kr  */
+/*   Created: 2022/08/09 21:30:20 by cyun              #+#    #+#             */
+/*   Updated: 2022/08/10 23:46:29 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	operation(t_format f)
+char	oper(t_format f)
 {
 	if (f.plus)
 		return ('+');
@@ -25,7 +25,7 @@ char	*ft_allocate(char *str, int len, unsigned int n)
 		len = 1;
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
-		return (NULL);
+		return (0);
 	str[len] = '\0';
 	while (len-- > 0)
 	{
@@ -41,50 +41,49 @@ char	*ft_uitoa(unsigned int n)
 	int		len;
 
 	len = ft_nbrlen(n, 10);
-	str = NULL;
+	str = 0;
 	str = ft_allocate(str, len, n);
 	if (!str)
-		return (NULL);
+		return (0);
 	return (str);
 }
 
-int	ft_print_nbr(t_format f, char *nbr, int len, int neg)
+int	ft_print_nbr(t_format f, char *nbr, int len, int n)
 {
-	int	c;
+	int	print_len;
 
-	c = 0;
-	f.width -= (f.space && !neg && !f.plus && f.width);
-	if (neg || f.plus)
-		c += ft_printnchar(operation(f), f.zero && (!f.dot || f.neg_prec));
-	else if (f.space)
-		c += ft_printnchar(' ', f.zero && !f.dot);
+	print_len = 0;
+	f.width -= (f.space && !f.neg && !f.plus && f.width);
+	if ((f.neg || f.plus) && n != INT_MIN)
+		print_len += ft_printnchar(oper(f), f.zero && (!f.dot || f.neg_prec));
+	else if (f.space && n != INT_MIN)
+		print_len += ft_printnchar(' ', f.zero && !f.dot);
 	if (!f.minus && f.width > f.precision && (!f.dot || f.neg_prec) && f.zero)
-		c += ft_printnchar('0', f.width - f.precision - neg - f.plus);
+		print_len += ft_printnchar('0', f.width - f.precision - f.neg - f.plus);
 	else if (!f.minus && f.width > f.precision)
-		c += ft_printnchar(' ', f.width - f.precision - neg - f.plus);
-	if (neg || f.plus)
-		c += ft_printnchar(operation(f), !f.zero || (f.dot && !f.neg_prec));
-	else if (f.space)
-		c += ft_printnchar(' ', !f.zero || f.dot);
-	c += ft_printnchar('0', f.precision - len);
-	c += write(1, nbr, len);
+		print_len += ft_printnchar(' ', f.width - f.precision - f.neg - f.plus);
+	if ((f.neg || f.plus) && n != INT_MIN)
+		print_len += ft_printnchar(oper(f), !f.zero || (f.dot && !f.neg_prec));
+	else if (f.space && n != INT_MIN)
+		print_len += ft_printnchar(' ', !f.zero || f.dot);
+	print_len += ft_printnchar('0', f.precision - len);
+	print_len += write(1, nbr, len);
 	if (f.minus && f.width > f.precision)
-		c += ft_printnchar(' ', f.width - f.precision - neg - f.plus);
-	return (c);
+		print_len += ft_printnchar(' ', f.width - f.precision - f.neg - f.plus);
+	return (print_len);
 }
 
 int	ft_print_d_i_u(t_format f, va_list ap)
 {
 	char	*nbr;
 	int		n;
-	int		c;
+	int		print_len;
 	int		len;
-	int		neg;
 
-	c = 0;
+	print_len = 0;
 	n = va_arg(ap, int);
-	neg = (n < 0 && n != INT_MIN && f.specifier != 'u');
-	if (neg)
+	f.neg = (n < 0 && n != INT_MIN && f.specifier != 'u');
+	if (f.neg)
 		f.plus = 0;
 	if (n < 0 && f.specifier != 'u')
 		n *= -1;
@@ -97,7 +96,7 @@ int	ft_print_d_i_u(t_format f, va_list ap)
 		len = 0;
 	if (f.precision < len || !f.dot)
 		f.precision = len;
-	c += ft_print_nbr(f, nbr, len, neg);
+	print_len += ft_print_nbr(f, nbr, len, n);
 	free(nbr);
-	return (c);
+	return (print_len);
 }

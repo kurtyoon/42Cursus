@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:14:57 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/22 16:58:34 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/08 18:34:13 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	count_nbr(long long n)
 {
 	int	cnt_nbr;
 
-	if (n == 0 || n == -0)
+	if (n == 0)
 		return (1);
 	cnt_nbr = 0;
 	if (n < 0)
@@ -35,7 +35,7 @@ char	*ft_itoa(int n)
 	char		*res;
 	int			len;
 
-	len = count_nbr(n);
+	len = count_nbr((long long)n);
 	nbr = (long long)n;
 	if (n < 0)
 		nbr *= -1;
