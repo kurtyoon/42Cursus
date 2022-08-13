@@ -58,6 +58,24 @@ int	ft_recursive_hex(t_format f, size_t n, size_t iteration)
 	return (print_len);
 }
 
+int	ft_print_hex(t_format f, unsigned long n, int len)
+{
+	int	print_len;
+
+	print_len = 0;
+	if (f.zero)
+		print_len += ft_printnstr(ft_sharp(f), 2 * (f.sharp && !f.dot && n));
+	if (!f.minus && f.width > f.precision && (!f.dot || f.neg_prec) && f.zero)
+		print_len += ft_printnchar('0', (f.width - f.precision));
+	else if (!f.minus && f.width > f.precision)
+		print_len += ft_printnchar(' ', (f.width - f.precision));
+	print_len += ft_printnstr(ft_sharp(f), 2 * (f.sharp && f.dot && n));
+	if (!f.zero)
+		print_len += ft_printnstr(ft_sharp(f), 2 * (f.sharp && n && !f.dot));
+	print_len += ft_printnchar('0', (f.precision - len));
+	return (print_len);
+}
+
 int	ft_print_x(t_format f, va_list ap)
 {
 	int				print_len;
@@ -73,13 +91,7 @@ int	ft_print_x(t_format f, va_list ap)
 		f.precision = len;
 	if (f.sharp && n)
 		f.width -= 2;
-	print_len += ft_printnstr(ft_sharp(f), 2 * (f.sharp && !f.dot && n));
-	if (!f.minus && f.width > f.precision && (!f.dot || f.neg_prec) && f.zero)
-		print_len += ft_printnchar('0', (f.width - f.precision));
-	else if (!f.minus && f.width > f.precision)
-		print_len += ft_printnchar(' ', (f.width - f.precision));
-	print_len += ft_printnstr(ft_sharp(f), 2 * (f.sharp && f.dot && n));
-	print_len += ft_printnchar('0', (f.precision - len));
+	print_len += ft_print_hex(f, n, len);
 	if (len)
 		print_len += ft_recursive_hex(f, n, n);
 	if (f.minus && f.width > f.precision)
