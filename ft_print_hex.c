@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 21:30:04 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/13 05:28:15 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/16 16:23:56 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,6 @@ char	*ft_sharp(t_format f)
 	if (f.specifier == 'X')
 		return ("0X");
 	return ("0x");
-}
-
-int	ft_nbrlen(long n, int base)
-{
-	int	len;
-
-	len = 0;
-	if (!base)
-		base = 10;
-	if (n == 0)
-		return (1);
-	while (n != 0)
-	{
-		len++;
-		n /= base;
-	}
-	return (len);
 }
 
 int	ft_recursive_hex(t_format f, size_t n, size_t iteration)

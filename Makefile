@@ -2,11 +2,11 @@ NAME = libftprintf.a
 LIBFT = libft
 LIBFT_LIB = libft.a
 
-SRCS = ./ft_printf.c ./ft_format.c ./ft_parse.c ./ft_print_chars.c ./ft_print_hex.c ./ft_print_nbrs.c ./ft_print_point.c
+SRCS = ./ft_printf.c ./ft_format.c ./ft_parse.c ./ft_print_chars.c ./ft_print_hex.c ./ft_print_nbrs.c ./ft_print_point.c ./ft_print_utils.c
 OBJS = $(SRCS:.c=.o)
 INCS = .
 AR = ar rcs
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 

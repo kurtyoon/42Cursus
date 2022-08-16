@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 21:29:32 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/10 23:47:13 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/16 16:26:43 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_parse(char *str, va_list ap)
 	if (*str == '.' && !new_format.specifier)
 	{
 		new_format.dot = 1;
-		new_format = ft_parse_precision(str++, ap, new_format);
+		new_format = ft_parse_precision(++str, ap, new_format);
 		while (!ft_strchr(SPECIFIERS, *str))
 			str++;
 	}

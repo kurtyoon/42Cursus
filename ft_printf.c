@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 21:29:12 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/10 23:46:10 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/16 16:04:15 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_printf(const char *str, ...)
 {
 	int		print_len;
 	va_list	ap;
-	char	*first;
+	char	*first_char;
 
 	print_len = 0;
 	va_start(ap, str);
@@ -24,13 +24,13 @@ int	ft_printf(const char *str, ...)
 	{
 		if (*str == '%')
 		{
-			first = (char *)str;
+			first_char = (char *)str;
 			if (*(++str))
 				print_len += ft_parse((char *)str, ap);
 			while (*str && !ft_strchr(SPECIFIERS, *str))
 				str++;
 			if (!(*str))
-				str = first;
+				str = first_char;
 		}
 		else
 			print_len += ft_printchar(*str);

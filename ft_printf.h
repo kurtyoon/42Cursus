@@ -6,19 +6,17 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 21:29:03 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/13 00:34:15 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/16 17:34:51 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "../libft/libft.h"
+# include "./libft/libft.h"
 # include <stdarg.h>
 # include <unistd.h>
 
-# define INT_MIN -2147483648
-# define UINT_MAX 4294967895
 # define SPECIFIERS "cspdiuxX%"
 # define HEXLOW "0123456789abcdef"
 # define HEXUP "0123456789ABCDEF"
@@ -52,5 +50,8 @@ int			ft_print_x(t_format f, va_list ap);
 int			ft_print_p(t_format f, va_list ap);
 int			ft_parse(char *str, va_list ap);
 int			ft_recursive_hex(t_format f, size_t n, size_t iteration);
+char		*ft_allocate(char *str, int len, unsigned int n);
+char		*ft_uitoa(unsigned int n);
+char		*ft_litoa(long long n);
 
 #endif
