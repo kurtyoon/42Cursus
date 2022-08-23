@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 21:29:03 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/16 17:34:51 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/23 01:38:38 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ t_format	ft_newformat(void);
 int			ft_print_format(t_format f, va_list ap);
 int			ft_print_c_pct(t_format f, va_list ap);
 int			ft_print_s(t_format f, va_list ap);
-int			ft_print_d_i_u(t_format f, va_list ap);
+int			ft_print_u(t_format f, va_list ap);
+int			ft_print_d_i(t_format f, va_list ap);
 int			ft_print_x(t_format f, va_list ap);
 int			ft_print_p(t_format f, va_list ap);
 int			ft_parse(char *str, va_list ap);

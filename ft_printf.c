@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 21:29:12 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/16 16:04:15 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/23 01:40:12 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ int	ft_print_format(t_format f, va_list ap)
 		print_len = ft_print_c_pct(f, ap);
 	if (f.specifier == 's')
 		print_len = ft_print_s(f, ap);
-	if (f.specifier == 'd' || f.specifier == 'i' || f.specifier == 'u')
-		print_len = ft_print_d_i_u(f, ap);
+	if (f.specifier == 'u')
+		print_len = ft_print_u(f, ap);
+	if (f.specifier == 'd' || f.specifier == 'i')
+		print_len = ft_print_d_i(f, ap);
 	if (f.specifier == 'X' || f.specifier == 'x')
 		print_len = ft_print_x(f, ap);
 	if (f.specifier == 'p')

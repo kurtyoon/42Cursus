@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 00:24:47 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/13 05:07:17 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/23 02:08:06 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_print_p(t_format f, va_list ap)
 	int		len;
 
 	print_len = 0;
-	n = va_arg(ap, unsigned long);
+	n = (size_t)va_arg(ap, void *);
 	len = count_pnt(f, n, n);
 	len *= !(!n && !f.precision && f.dot);
 	if (f.precision < len || !f.dot)
