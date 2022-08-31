@@ -10,8 +10,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I$(INCS)
+.c.o: $(SRCS)
+	$(CC) $(CFLAGS) -c -o $@ $< -I$(INCS)
 
 $(NAME): $(OBJS)
 	make all -C $(LIBFT)/

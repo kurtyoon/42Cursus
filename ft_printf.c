@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 21:29:12 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/23 01:40:12 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/30 17:30:32 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_printf(const char *str, ...)
 {
 	int		print_len;
 	va_list	ap;
-	char	*first_char;
 
 	print_len = 0;
 	va_start(ap, str);
@@ -24,13 +23,10 @@ int	ft_printf(const char *str, ...)
 	{
 		if (*str == '%')
 		{
-			first_char = (char *)str;
 			if (*(++str))
 				print_len += ft_parse((char *)str, ap);
 			while (*str && !ft_strchr(SPECIFIERS, *str))
 				str++;
-			if (!(*str))
-				str = first_char;
 		}
 		else
 			print_len += ft_printchar(*str);

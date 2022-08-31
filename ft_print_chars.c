@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 21:29:52 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/16 16:25:12 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/30 15:36:03 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_print_c_pct(t_format f, va_list ap)
 	else
 		c = '%';
 	f.precision = 1;
-	if (!f.minus && f.zero)
+	if (!f.minus && f.zero && f.width > f.precision)
 		print_len += ft_printnchar('0', f.width - f.precision);
 	else if (!f.minus && f.width > f.precision)
 		print_len += ft_printnchar(' ', f.width - f.precision);
@@ -65,9 +65,9 @@ int	ft_print_s(t_format f, va_list ap)
 	string = va_arg(ap, char *);
 	if (!string)
 		string = "(null)";
-	if (!f.dot || f.precision > (int)ft_strlen(string) || f.precision < 0)
+	if (!f.dot || f.precision > (int)ft_strlen(string) || f.neg_prec)
 		f.precision = ft_strlen(string);
-	if (!f.minus && f.width > f.precision && f.zero)
+	if (!f.minus && f.zero && f.width > f.precision)
 		print_len += ft_printnchar('0', f.width - f.precision);
 	else if (!f.minus && f.width > f.precision)
 		print_len += ft_printnchar(' ', f.width - f.precision);

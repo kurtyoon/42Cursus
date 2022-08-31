@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:22:38 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/16 16:52:20 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2022/08/30 11:09:12 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ int	ft_nbrlen(long n, int base)
 	return (len);
 }
 
-char	*ft_allocate(char *str, int len, unsigned int n)
+char	*ft_uitoa(unsigned int n)
 {
-	if (n == 0)
-		len = 1;
+	char	*str;
+	int		len;
+
+	len = ft_nbrlen(n, 10);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (0);
@@ -42,19 +44,6 @@ char	*ft_allocate(char *str, int len, unsigned int n)
 		str[len] = (n % 10) + '0';
 		n /= 10;
 	}
-	return (str);
-}
-
-char	*ft_uitoa(unsigned int n)
-{
-	char	*str;
-	int		len;
-
-	len = ft_nbrlen(n, 10);
-	str = 0;
-	str = ft_allocate(str, len, n);
-	if (!str)
-		return (0);
 	return (str);
 }
 
