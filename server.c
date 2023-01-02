@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:07:20 by cyun              #+#    #+#             */
-/*   Updated: 2022/12/27 16:17:00 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/02 15:08:50 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	ft_handler(int signal)
 {
-	static int	bit;
-	static int	i;
-
-	if (signal == SIGUSR1)
-		i |= (0x01 << bit);
+	static int	bit; // 비트를 얼마나 받았는 지 확인하는 정적 변수
+	static char	tmp; // 비트를 저장하는 정적 변수
+	
+	if (signal == SIGUSR1) // SIGUSR2 일 때는 어차피 0 이므로 pass 가능
+		tmp |= (1 << bit);
 	bit++;
-	if (bit == 8)
+	if (bit == 8) // 비트가 8이 될 경우 저장된 문자를 출력하고 정적변수 초기화
 	{
-		ft_putchar_fd((char)i, 1);
+		ft_putchar_fd(tmp, 1);
 		bit = 0;
-		i = 0;
+		tmp = 0;
 	}
 }
 
@@ -44,11 +44,13 @@ int	main(int argc, char **argv)
 	ft_putnbr_fd(pid, 1); // pid 출력
 	ft_putchar_fd('\n', 1);
 	ft_putstr_fd("Waiting for a message...\n", 1);
+	// signal(SIGUSR1, ft_handler);
+	// signal(SIGUSR2, ft_handler);
 	while (argc == 1)
 	{
 		signal(SIGUSR1, ft_handler);
 		signal(SIGUSR2, ft_handler);
-		pause();
+		pause(); // 요청이 들어올 때 까지 대기
 	}
 	return (0);
 }
