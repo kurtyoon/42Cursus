@@ -6,18 +6,20 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 15:39:57 by cyun              #+#    #+#             */
-/*   Updated: 2022/12/27 15:40:59 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/02 11:27:26 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include "minitalk_bonus.h"
 
+// write character
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }
 
+// write string
 void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
@@ -27,6 +29,7 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, &s[i++], 1);
 }
 
+// recursive func
 void	rec_putnbr(int nb, int fd)
 {
 	char	c;
@@ -38,6 +41,7 @@ void	rec_putnbr(int nb, int fd)
 	ft_putchar_fd(c, fd);
 }
 
+// write number
 void	ft_putnbr_fd(int n, int fd)
 {
 	char	c;
@@ -56,6 +60,7 @@ void	ft_putnbr_fd(int n, int fd)
 	ft_putchar_fd(c, fd);
 }
 
+// transform ascii to integer
 int	ft_atoi(const char *str)
 {
 	int	i;
