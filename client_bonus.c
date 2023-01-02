@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:13:19 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/02 15:14:36 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/02 16:13:08 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,15 @@ void	ft_send_str(int pid, char input[])
 int	main(int argc, char **argv)
 {
 	int	pid;
-	int	i;
+	// int	i;
 
-	i = 0;
+	// i = 0;
 	if (argc == 3) // 인자가 유효할 경우
 	{
 		signal(SIGUSR1, ft_confirm);
+		signal(SIGUSR2, ft_confirm);
 		pid = ft_atoi(argv[1]); // pid를 인자에서 가져옴
-		if (pid <= 100 || pid >= 99999)
+		if (pid <= 100 || pid >= 99999) // 100이하는 시스템pid, 99999이상은 존재하지 않음
 		{
 			ft_putstr_fd("Error: wrong pid.\n", 1);
 			return (0);
@@ -81,7 +82,7 @@ int	main(int argc, char **argv)
 	else // 인자가 유효하지 않을 경우
 	{
 		ft_putstr_fd("Error: wrong format.\n", 1);
-		ft_putstr_fd("Try: ./client_bonus [PID] [MESSAGE]\n", 1);
+		ft_putstr_fd("Try: ./client [PID] [MESSAGE]\n", 1);
 	}
 	return (0);
 }
