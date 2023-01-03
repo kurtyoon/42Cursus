@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 17:25:43 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/05 17:54:11 by cyun             ###   ########seoul.kr  */
+/*   Created: 2022/10/05 10:29:47 by cyun              #+#    #+#             */
+/*   Updated: 2022/10/31 11:08:10 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_nbrlen(long n, int base)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	while (s[i])
-		write(fd, &s[i++], 1);
+	len = 0;
+	if (!base)
+		base = 10;
+	if (n == 0)
+		return (1);
+	while (n != 0)
+	{
+		len++;
+		n /= base;
+	}
+	return (len);
 }

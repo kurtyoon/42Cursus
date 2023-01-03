@@ -15,6 +15,7 @@ SRCS_NM = ft_isalpha.c \
 		  ft_isalnum.c \
 		  ft_isascii.c \
 		  ft_isprint.c \
+		  ft_isspace.c \
 		  ft_strlen.c \
 		  ft_memset.c \
 		  ft_bzero.c \
@@ -41,9 +42,13 @@ SRCS_NM = ft_isalpha.c \
 		  ft_strmapi.c \
 		  ft_striteri.c \
 		  ft_putchar_fd.c \
+		  ft_putnchar_fd.c \
+		  ft_putnbr_base_fd.c \
 		  ft_putstr_fd.c \
 		  ft_putendl_fd.c \
-		  ft_putnbr_fd.c
+		  ft_putnbr_fd.c \
+		  ft_isspace.c \
+		  ft_nbrlen.c
 
 SRCS_BN = ft_lstnew.c \
 		  ft_lstadd_front.c \
@@ -66,7 +71,6 @@ ifdef WITH_BONUS
 endif
 
 all : $(NAME)
-	sleep 1
 
 .c.o : $(SRCS)
 	$(CC) $(CFLAGS) -c -o $@ $<

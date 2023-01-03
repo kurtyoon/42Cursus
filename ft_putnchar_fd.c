@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putnchar_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 16:25:50 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/24 16:45:35 by cyun             ###   ########seoul.kr  */
+/*   Created: 2022/10/05 10:43:12 by cyun              #+#    #+#             */
+/*   Updated: 2022/10/31 11:07:53 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int	ft_putnchar_fd(char c, int fd, int n)
 {
-	size_t	i;
+	int	count;
 
-	i = 0;
-	if (dst == 0 && src == 0)
-		return (NULL);
-	while (i < n)
-	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	return (dst);
+	count = 0;
+	while (n-- > 0)
+		count += (int)write(fd, &c, 1);
+	return (count);
 }
