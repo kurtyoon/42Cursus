@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:13:19 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/02 16:13:08 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/02 16:18:00 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	main(int argc, char **argv)
 	if (argc == 3) // 인자가 유효할 경우
 	{
 		signal(SIGUSR1, ft_confirm);
-		signal(SIGUSR2, ft_confirm);
 		pid = ft_atoi(argv[1]); // pid를 인자에서 가져옴
 		if (pid <= 100 || pid >= 99999) // 100이하는 시스템pid, 99999이상은 존재하지 않음
 		{
@@ -76,6 +75,8 @@ int	main(int argc, char **argv)
 		// }
 		// ft_send_bits(pid, '\n'); // 개행문자 전송
 		ft_send_str(pid, argv[2]);
+		// signal(SIGUSR1, ft_confirm);
+		// signal(SIGUSR2, ft_confirm);
 		while (1)
 			pause();
 	}

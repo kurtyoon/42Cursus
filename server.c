@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:07:20 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/02 15:08:50 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/03 10:38:17 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_handler(int signal)
 	static char	tmp; // 비트를 저장하는 정적 변수
 	
 	if (signal == SIGUSR1) // SIGUSR2 일 때는 어차피 0 이므로 pass 가능
-		tmp |= (1 << bit);
+		tmp |= (1 << bit); // 가장 오른쪽 비트부터 받아옴
 	bit++;
 	if (bit == 8) // 비트가 8이 될 경우 저장된 문자를 출력하고 정적변수 초기화
 	{
