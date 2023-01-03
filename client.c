@@ -6,13 +6,13 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:04:36 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/03 16:31:01 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/04 01:48:02 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	ft_send_bits(int pid, char input)
+static void	ft_send_bits(pid_t pid, char input)
 {
 	int	bit;
 
@@ -29,7 +29,7 @@ void	ft_send_bits(int pid, char input)
 	}
 }
 
-void	ft_send_str(int pid, char input[])
+static void	ft_send_str(pid_t pid, char input[])
 {
 	int	i;
 
@@ -40,14 +40,13 @@ void	ft_send_str(int pid, char input[])
 		i++;
 	}
 	ft_send_bits(pid, '\n');
+	ft_send_bits(pid, '\0');
 }
 
 int	main(int argc, char **argv)
 {
-	int	pid;
-	int	i;
+	pid_t	pid;
 
-	i = 0;
 	if (argc == 3 && argv[2][0] != '\0') // 인자가 정확할 경우
 	{
 		pid = ft_atoi(argv[1]); // 입력된 pid 받아오기
@@ -56,12 +55,6 @@ int	main(int argc, char **argv)
 			ft_putstr_fd("Error: wrong pid.\n", 1);
 			return (0);
 		}
-		// while (argv[2][i] != '\0')
-		// {
-		// 	ft_send_bits(pid, argv[2][i]); // 한 글자씩 전달
-		// 	i++;
-		// }
-		// ft_send_bits(pid, '\n'); // 개행문자 전달
 		ft_send_str(pid, argv[2]); // 문자열을 한번에 전달
 	}
 	else // 인자가 유효하지 않은 경우

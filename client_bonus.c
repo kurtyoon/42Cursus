@@ -6,24 +6,20 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:13:19 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/03 16:29:14 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/04 01:50:44 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-void	ft_confirm(int signal)
+static void	ft_confirm(int signal)
 {
-	// if (signal == SIGUSR1)
-	// 	ft_putstr_fd(".", 1);
-	// else
-	// 	ft_putstr_fd(".", 1);
 	if (signal == SIGUSR1)
 		ft_putstr_fd("Server received message\n", 1);
 	exit (0);
 }
 
-void	ft_send_bits(int pid, char input)
+static void	ft_send_bits(pid_t pid, char input)
 {
 	int	bit;
 
@@ -39,7 +35,7 @@ void	ft_send_bits(int pid, char input)
 	}
 }
 
-void	ft_send_str(int pid, char input[])
+static void	ft_send_str(pid_t pid, char input[])
 {
 	int	i;
 
@@ -50,14 +46,13 @@ void	ft_send_str(int pid, char input[])
 		i++;
 	}
 	ft_send_bits(pid, '\n');
+	ft_send_bits(pid, '\0'); // '\0'을 기준으로 끝내므로 보내주기
 }
 
 int	main(int argc, char **argv)
 {
-	int	pid;
-	// int	i;
+	pid_t	pid;
 
-	// i = 0;
 	if (argc == 3 && argv[2][0] != '\0') // 인자가 유효할 경우
 	{
 		signal(SIGUSR1, ft_confirm);
@@ -67,17 +62,7 @@ int	main(int argc, char **argv)
 			ft_putstr_fd("Error: wrong pid.\n", 1);
 			return (0);
 		}
-		// while (argv[2][i] != '\0')
-		// {
-		// 	signal(SIGUSR1, ft_confirm);
-		// 	signal(SIGUSR2, ft_confirm);
-		// 	ft_send_bits(pid, argv[2][i]); // 한 글자씩 전송
-		// 	i++;
-		// }
-		// ft_send_bits(pid, '\n'); // 개행문자 전송
 		ft_send_str(pid, argv[2]);
-		// signal(SIGUSR1, ft_confirm);
-		// signal(SIGUSR2, ft_confirm);
 		while (1)
 			pause();
 	}

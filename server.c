@@ -6,13 +6,13 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:07:20 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/03 16:14:57 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/04 01:33:21 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	ft_handler(int signal)
+static void	ft_handler(int signal)
 {
 	static int	bit; // 비트를 얼마나 받았는 지 확인하는 정적 변수
 	static char	tmp; // 비트를 저장하는 정적 변수
@@ -28,9 +28,17 @@ void	ft_handler(int signal)
 	}
 }
 
+static void ft_pid_print(pid_t pid)
+{
+	ft_putstr_fd("PID -> ", 1);
+	ft_putnbr_fd(pid, 1);
+	ft_putchar_fd('\n', 1);
+	ft_putstr_fd("Waiting for a message...\n", 1);
+}
+
 int	main(int argc, char **argv)
 {
-	int	pid;
+	pid_t	pid;
 
 	(void)argv;
 	if (argc != 1) // 인자가 1개일 경우 에러처리
@@ -40,17 +48,10 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	pid = getpid(); // pid를 생성
-	ft_putstr_fd("PID -> ", 1);
-	ft_putnbr_fd(pid, 1); // pid 출력
-	ft_putchar_fd('\n', 1);
-	ft_putstr_fd("Waiting for a message...\n", 1);
+	ft_pid_print(pid);
 	signal(SIGUSR1, ft_handler);
 	signal(SIGUSR2, ft_handler);
 	while (argc == 1)
-	{
-		// signal(SIGUSR1, ft_handler);
-		// signal(SIGUSR2, ft_handler);
 		pause(); // 요청이 들어올 때 까지 대기
-	}
 	return (0);
 }
