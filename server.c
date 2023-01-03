@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:07:20 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/03 10:38:17 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/03 16:14:57 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	main(int argc, char **argv)
 	ft_putnbr_fd(pid, 1); // pid 출력
 	ft_putchar_fd('\n', 1);
 	ft_putstr_fd("Waiting for a message...\n", 1);
-	// signal(SIGUSR1, ft_handler);
-	// signal(SIGUSR2, ft_handler);
+	signal(SIGUSR1, ft_handler);
+	signal(SIGUSR2, ft_handler);
 	while (argc == 1)
 	{
-		signal(SIGUSR1, ft_handler);
-		signal(SIGUSR2, ft_handler);
+		// signal(SIGUSR1, ft_handler);
+		// signal(SIGUSR2, ft_handler);
 		pause(); // 요청이 들어올 때 까지 대기
 	}
 	return (0);

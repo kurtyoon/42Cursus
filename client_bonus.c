@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:13:19 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/02 16:18:00 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/03 16:29:14 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ void	ft_confirm(int signal)
 	// 	ft_putstr_fd(".", 1);
 	// else
 	// 	ft_putstr_fd(".", 1);
-	ft_putstr_fd("Complete..\n", 1);
-	exit(0);
+	if (signal == SIGUSR1)
+		ft_putstr_fd("Server received message\n", 1);
+	exit (0);
 }
 
 void	ft_send_bits(int pid, char input)
@@ -57,11 +58,11 @@ int	main(int argc, char **argv)
 	// int	i;
 
 	// i = 0;
-	if (argc == 3) // 인자가 유효할 경우
+	if (argc == 3 && argv[2][0] != '\0') // 인자가 유효할 경우
 	{
 		signal(SIGUSR1, ft_confirm);
 		pid = ft_atoi(argv[1]); // pid를 인자에서 가져옴
-		if (pid <= 100 || pid >= 99999) // 100이하는 시스템pid, 99999이상은 존재하지 않음
+		if (pid <= 100 || pid >= 99999) // 100 이하는 시스템 pid, 99999 이상은 존재하지 않음
 		{
 			ft_putstr_fd("Error: wrong pid.\n", 1);
 			return (0);

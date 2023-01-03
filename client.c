@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 14:04:36 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/03 10:37:50 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/03 16:31:01 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int	main(int argc, char **argv)
 	int	i;
 
 	i = 0;
-	if (argc == 3) // 인자가 정확할 경우
+	if (argc == 3 && argv[2][0] != '\0') // 인자가 정확할 경우
 	{
 		pid = ft_atoi(argv[1]); // 입력된 pid 받아오기
-		if (pid <= 100 || pid >= 99999) // pid의 범위 처리. 100이하는 시스템, 99999이상은 없는 pid
+		if (pid < 100 || pid > 99999) // pid의 범위 처리. 100이하는 시스템, 99999이상은 없는 pid
 		{
 			ft_putstr_fd("Error: wrong pid.\n", 1);
 			return (0);
