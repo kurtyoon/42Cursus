@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:28:03 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/09 16:47:01 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/09 23:38:49 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_pixels_of_tile(t_game *game, char texture)
 	else if (texture == 'E') // 'E'일 경우 출구
 		game->img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
 				"imgs/exit.xpm", &w, &h);
-	else if (texture == '0')
+	else if (texture == '0') // '0'일 경우 빈공간
 		game->img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
 				"imgs/empty.xpm", &w, &h);
 	else if (texture == 'P') // 'P'인 경우 플레이어

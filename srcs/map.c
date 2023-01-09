@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:27:51 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/09 15:42:17 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/09 23:38:55 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	check_map_line(t_game *game, char *line, int check_wall)
 		{
 			close_game_with_error(0); // 다른 문자가 있는 경우
 		}
-		set_map_value(game, line[i]); // game 구조체에 맵 입력
+		set_map_value(game, line[i]); // game 구조체에 맵의 구성요소 입력
 	}
 }
 

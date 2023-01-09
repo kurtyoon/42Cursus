@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:40:23 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/09 15:51:56 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/09 23:38:43 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	dfs(t_game *game, t_check *check, int y, int x)
 		if (game->map[ny][nx] != '1' && !check->visited[ny][nx]) // 새로운 좌표가 벽이 아니고 방문하지 않았을 떄 dfs 탐색
 			dfs(game, check, ny, nx);
 	}
-
 }
 
 void	init_check(t_game *game, t_check *check)
