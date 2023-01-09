@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 15:11:31 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/09 11:30:01 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/09 16:58:10 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5000
+#  define BUFFER_SIZE 42
 # endif
 
 char	*get_next_line(int fd);
