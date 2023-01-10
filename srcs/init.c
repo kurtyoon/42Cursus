@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:27:57 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/10 13:49:33 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 14:00:34 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,22 @@ void	init_param(t_game *game)
 	game->valid_path = 0;
 }
 
-void	get_map_line(t_game *game, char *line, int l)
+void	get_map_line(t_game *game, char *line, int y)
 {
-	int		i;
+	int		x;
 
-	i = 0;
-	game->map[l] = (char *)malloc(sizeof(char) * game->width); // 가로길이 만큼 동적 할당
-	while (line[i])
+	x = 0;
+	game->map[y] = (char *)malloc(sizeof(char) * game->width); // 가로길이 만큼 동적 할당
+	while (line[x])
 	{
-		if (line[i] == 'P') // 'P', 플레이어 라면
+		if (line[x] == 'P') // 'P', 플레이어 라면
 		{
-			game->position.y = l;
-			game->position.x = i;
+			game->position.y = y;
+			game->position.x = x;
 			// game.position에 좌표 입력
 		}
-		game->map[l][i] = line[i]; // 맵 입력
-		i++;
+		game->map[y][x] = line[x]; // 맵 입력
+		x++;
 	}
 }
 
@@ -102,7 +102,7 @@ void	init_map(t_game *game, int fd)
 		free(line);
 		i++;
 	}
-	check_path(game); // 맵에 가능한 경로 체크
+	check_map_path(game); // 맵에 가능한 경로 체크
 	ft_putstr_fd("------------------\n", 1);
 	ft_putstr_fd("   Game start !   \n", 1);
 	ft_putstr_fd("------------------\n", 1);

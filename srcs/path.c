@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:40:23 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/10 13:26:03 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 14:00:19 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	init_check(t_game *game, t_check *check)
 	check->collectible = game->map_textures.collectible; // 콜렉터블의 개수 입력
 }
 
-void	check_path(t_game *game)
+void	check_map_path(t_game *game)
 {
 	t_check	check;
 

@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:28:13 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/10 13:50:03 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 14:00:11 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		press_key(int keycode, t_game *game);
 
 void	init_minilibx(t_game *game);
 void	init_param(t_game *game);
-void	get_map_line(t_game *game, char *line, int l);
+void	get_map_line(t_game *game, char *line, int y);
 void	init_map(t_game *game, int fd);
 int		check_last_line(char *line);
 
@@ -102,12 +102,12 @@ void	check_map_components(t_game *game);
 void	get_map(t_game *game, int fd);
 
 void	draw_pixels_of_tile(t_game *game, char texture);
-void	draw_map(t_game *game, char *line, int l);
+void	draw_map(t_game *game, char *line, int y);
 
 int		close_game(t_game *game, int type);
 int		close_game_with_error(int type);
 void	print_move(char c);
 
-void	check_path(t_game *game);
+void	check_map_path(t_game *game);
 
 #endif

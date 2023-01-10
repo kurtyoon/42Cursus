@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:28:03 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/10 12:52:03 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 13:59:39 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,26 @@ void	draw_pixels_of_tile(t_game *game, char texture)
 	}
 }
 
-void	draw_map(t_game *game, char *line, int l)
+void	draw_map(t_game *game, char *line, int y)
 {
-	int	i;
+	int	x;
 
-	i = 0;
-	while (line[i])
+	x = 0;
+	while (line[x])
 	{
-		if (line[i] == '0') // '0'일 경우에 빈 공간이므로 pass
+		if (line[x] == '0') // '0'일 경우에 빈 공간이므로 pass
 		{
-			i++;
+			x++;
 			continue ;
 		}
-		if (line[i] == 'P') // 'P'일 경우 플레이어
+		if (line[x] == 'P') // 'P'일 경우 플레이어
 		{
-			game->position.tile_x = i * TILES; // 플레이어의 x좌표 * 64
-			game->position.tile_y = l * TILES; // 플레이어의 y좌표 * 64 (64픽셀로 그림 그리기 때문) -> 가장 오른쪽 하단 꼭짓점이 좌표가 됨
+			game->position.tile_x = x * TILES; // 플레이어의 x좌표 * 64
+			game->position.tile_y = y * TILES; // 플레이어의 y좌표 * 64 (64픽셀로 그림 그리기 때문) -> 가장 오른쪽 하단 꼭짓점이 좌표가 됨
 		}
-		draw_pixels_of_tile(game, line[i]);
+		draw_pixels_of_tile(game, line[x]);
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
-		game->img.img_ptr, i * TILES, l * TILES);
-		i++;
+		game->img.img_ptr, x * TILES, y * TILES);
+		x++;
 	}
 }
