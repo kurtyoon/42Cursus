@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:39:01 by cyun              #+#    #+#             */
-/*   Updated: 2022/11/07 11:25:40 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 15:54:47 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/stack.h"
+#include "../include/push_swap.h"
 
 // Pop Stack at first node
 // If Stack is empty -> return NULL

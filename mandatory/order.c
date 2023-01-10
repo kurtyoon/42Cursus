@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 09:11:16 by cyun              #+#    #+#             */
-/*   Updated: 2022/11/03 16:09:57 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 15:54:32 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "../include/push_swap.h"
 
 int	st_order(t_list **a, t_list **b)
 {

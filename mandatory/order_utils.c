@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:46:10 by cyun              #+#    #+#             */
-/*   Updated: 2022/11/01 15:21:06 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 15:54:25 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "../include/push_swap.h"
 
 // Check Stack is ordered.
 int	st_is_ordered(t_list *stack)

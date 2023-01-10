@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:51:22 by cyun              #+#    #+#             */
-/*   Updated: 2022/11/01 15:34:31 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 15:54:20 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/push_swap.h"
+#include "../include/push_swap.h"
 
 // atoi function, This fucntion prevents Overflow
 int	st_parse_input(const char *str, long *nbr)

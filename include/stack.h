@@ -6,13 +6,14 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:30:05 by cyun              #+#    #+#             */
-/*   Updated: 2022/10/05 11:44:45 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 16:54:01 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_H
 # define STACK_H
-# include "../libft/libft.h"
+# include "ft_printf/include/ft_printf.h"
+# include "get_next_line/include/get_next_line.h"
 
 void	*st_pop(t_list **stack);
 int		st_push(t_list **stack, void *newcontent, size_t size);

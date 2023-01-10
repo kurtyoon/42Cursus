@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:36:12 by cyun              #+#    #+#             */
-/*   Updated: 2022/11/01 15:42:20 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 15:54:39 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/stack.h"
+#include "../include/push_swap.h"
 
 // swap a or swap b
 int	st_swap_ab(t_list **stack, char c)
