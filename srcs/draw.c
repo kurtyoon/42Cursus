@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:28:03 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/10 10:44:41 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 12:55:49 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	draw_pixels_of_tile(t_game *game, char texture)
 	{
 		game->img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
 				"imgs/player.xpm", &w, &h);
-		game->position.img_ptr = game->img.img_ptr;
+		game->position.img_ptr = game->img.img_ptr; // 플레이어 위치에 대한 이미지 포인터도 저장해줌
 	}
 }
 
@@ -56,7 +56,7 @@ void	draw_map(t_game *game, char *line, int l)
 		}
 		draw_pixels_of_tile(game, line[i]);
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
-		game->img.img_ptr, i * TILES, l * TILES);
+		game->img.img_ptr, i * TILES, l * TILES); // 해당 위치의 이미지 저장값을 출력
 		i++;
 	}
 }

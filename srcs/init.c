@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:27:57 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/09 15:45:00 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 13:49:33 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_param(t_game *game)
 	game->valid_path = 0;
 }
 
-void	get_map_col(t_game *game, char *line, int l)
+void	get_map_line(t_game *game, char *line, int l)
 {
 	int		i;
 
@@ -93,7 +93,7 @@ void	init_map(t_game *game, int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		get_map_col(game, line, i); // 맵 입력
+		get_map_line(game, line, i); // 맵 입력
 		if (i + 1 == game->height) // 마지막 줄이라면
 			is_valid = check_last_line(line); // 마지막 줄 체크
 		if (!is_valid) // 마지막 줄에 대한 타당성 검증

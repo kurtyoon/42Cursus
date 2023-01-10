@@ -6,7 +6,7 @@
 #    By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 13:39:25 by hykang            #+#    #+#              #
-#    Updated: 2023/01/09 15:30:01 by cyun             ###   ########seoul.kr   #
+#    Updated: 2023/01/10 13:42:58 by cyun             ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS =	srcs/main.c srcs/draw.c srcs/init.c \
 SRCSB =	srcsb/main_bonus.c srcsb/draw_bonus.c srcsb/init_bonus.c \
 		srcsb/map_bonus.c srcsb/player_bonus.c srcsb/utils_bonus.c \
 		srcsb/path_bonus.c
+		
 OBJS = $(SRCS:.c=.o)
 OBJSB = $(SRCSB:.c=.o)
 
@@ -29,13 +30,15 @@ GNL_DIR = ./include/get_next_line
 
 ifdef WITH_BONUS
 		SOURCE = $(SRCSB)
+		OBJECT = $(OBJSB)
 	else
 		SOURCE = $(SRCS)
+		OBJECT = $(OBJS)
 endif
 
 all: $(NAME)
 
-$(NAME): $(SOURCE)
+$(NAME): $(OBJECT)
 	make -C $(MLX_DIR) all
 	make -C $(GNL_DIR) all
 	$(CC) $(CFLAGS) -L$(MLX_DIR) -l$(MLX_NAME) \
@@ -51,7 +54,7 @@ clean:
 	make -C $(GNL_DIR) clean
 
 fclean: clean
-	rm -f $(NAME) $(OBJS)
+	rm -f $(NAME) $(OBJS) $(OBJSB)
 	make -C $(MLX_DIR) clean
 	make -C $(GNL_DIR) fclean
 

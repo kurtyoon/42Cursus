@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:27:44 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/10 11:13:47 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 13:47:00 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	passing_exit(t_game *game, int prev_y, int prev_x)
 			game->img.img_ptr, prev_x, prev_y);
 }
 
-void	draw_updated_player(t_game *game, int prev_y, int prev_x)
+void	draw_update_player(t_game *game, int prev_y, int prev_x)
 {
 	int		h;
 	int		w;
@@ -120,7 +120,7 @@ int	press_key(int keycode, t_game *game)
 			game->position.tile_x -= TILES; // x--이므로 64만큼 감소
 		else if (keycode == KEY_D) // D를 눌렀을 때
 			game->position.tile_x += TILES; // x++이므로 64만큼 증가
-		draw_updated_player(game, prev_y, prev_x); // 플레이어의 그림 업데이트
+		draw_update_player(game, prev_y, prev_x); // 플레이어의 그림 업데이트
 		if (flag == 2) // 플레그가 2일경우 출구로 이동
 			passing_exit(game, prev_y, prev_x);
 		print_move(game->move); // 움직임 업데이트

@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:40:23 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/09 23:38:43 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 13:26:03 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_visited(int **visited) // visited 배열 free
 	visited = 0;
 }
 
-int	**visited_init(t_game *game) // visited 배열 생성
+int	**init_visited(t_game *game) // visited 배열 생성
 {
 	int	**visited;
 	int	i;
@@ -79,7 +79,7 @@ void	dfs(t_game *game, t_check *check, int y, int x)
 
 void	init_check(t_game *game, t_check *check)
 {
-	check->visited = visited_init(game); // visited 배열 입력
+	check->visited = init_visited(game); // visited 배열 입력
 	check->y = game->height; // 세로길이 입력
 	check->x = game->width; // 가로길이 입력
 	check->collectible = game->map_textures.collectible; // 콜렉터블의 개수 입력

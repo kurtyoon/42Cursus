@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:28:13 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/09 16:45:14 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 13:50:09 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ char	*ft_itoa(int n);
 int		check_valid_move(t_game *game, int x, int y, int keycode);
 int		check_player_move(int keycode, t_game *game);
 void	passing_exit(t_game *game, int prev_x, int prev_y);
-void	draw_updated_player(t_game *game, int prev_x, int prev_y);
+void	draw_update_player(t_game *game, int prev_x, int prev_y);
 int		press_key(int keycode, t_game *game);
 
 void	init_minilibx(t_game *game);
 void	init_param(t_game *game);
-void	get_map_col(t_game *game, char *line, int l);
+void	get_map_line(t_game *game, char *line, int l);
 void	init_map(t_game *game, int fd);
 int		check_last_line(char *line);
 
