@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:05:58 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/09 14:25:13 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 12:54:07 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,20 @@ void	print_move(char c)
 	ft_putchar_fd('\n', 1);
 }
 
+int	game_start(t_game *game)
+{
+	char	*move_cnt;
+
+	move_cnt = ft_itoa(game->move);
+	draw_pixels_of_tile(game, '0'); // 플레이어에 대한 이미지 업데이트
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
+	game->position.img_ptr, game->position.tile_x, game->position.tile_y);
+	mlx_string_put(game->mlx_ptr, game->win_ptr, 64, 64, 999999999, "MOVE COUNT: ");
+	mlx_string_put(game->mlx_ptr, game->win_ptr, 150, 64, 999999999, move_cnt);
+	free(move_cnt);
+	return (0);
+}
+
 int	main(int argc, char *argv[])
 {
 	int		fd;
@@ -95,6 +109,7 @@ int	main(int argc, char *argv[])
 	close(fd);
 	mlx_hook(game.win_ptr, X_EVENT_KEYPRESS, 0, &press_key, &game);
 	mlx_hook(game.win_ptr, X_EVENT_EXIT, 0, &close_game, &game);
+	mlx_loop_hook(game.win_ptr, &game_start, &game);
 	mlx_loop(game.mlx_ptr);
 	return (0);
 }

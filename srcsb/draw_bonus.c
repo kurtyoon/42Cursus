@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:28:03 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/09 14:24:50 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 12:52:03 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ void	draw_pixels_of_tile(t_game *game, char texture)
 	int	w;
 	int	h;
 
-	if (texture == '1')
+	if (texture == '1') // '1'일 경우 벽
 		game->img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
 				"imgs/wall.xpm", &w, &h);
-	else if (texture == 'C')
+	else if (texture == 'C') // 'C'일 경우 콜렉터블
 		game->img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
 				"imgs/collectible.xpm", &w, &h);
-	else if (texture == 'E')
+	else if (texture == 'E') // 'E'일 경우 출구
 		game->img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
 				"imgs/exit.xpm", &w, &h);
-	else if (texture == 'P')
+	else if (texture == '0') // '0'일 경우 빈공간
+		game->img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
+				"imgs/empty.xpm", &w, &h);
+	else if (texture == 'P') // 'P'인 경우 플레이어
 	{
 		game->img.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
 				"imgs/player.xpm", &w, &h);
@@ -41,15 +44,15 @@ void	draw_map(t_game *game, char *line, int l)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == '0')
+		if (line[i] == '0') // '0'일 경우에 빈 공간이므로 pass
 		{
 			i++;
 			continue ;
 		}
-		if (line[i] == 'P')
+		if (line[i] == 'P') // 'P'일 경우 플레이어
 		{
-			game->position.tile_x = i * TILES;
-			game->position.tile_y = l * TILES;
+			game->position.tile_x = i * TILES; // 플레이어의 x좌표 * 64
+			game->position.tile_y = l * TILES; // 플레이어의 y좌표 * 64 (64픽셀로 그림 그리기 때문) -> 가장 오른쪽 하단 꼭짓점이 좌표가 됨
 		}
 		draw_pixels_of_tile(game, line[i]);
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \

@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:28:13 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/09 14:25:01 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 12:49:07 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_check
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+char	*ft_itoa(int n);
 
 int		check_valid_move(t_game *game, int x, int y, int keycode);
 int		check_player_move(int keycode, t_game *game);

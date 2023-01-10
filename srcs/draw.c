@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:28:03 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/09 23:38:49 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 10:44:41 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	draw_map(t_game *game, char *line, int l)
 		}
 		if (line[i] == 'P') // 'P'일 경우 플레이어
 		{
-			game->position.tile_x = i * TILES;
-			game->position.tile_y = l * TILES;
+			game->position.tile_x = i * TILES; // 플레이어의 x좌표 * 64
+			game->position.tile_y = l * TILES; // 플레이어의 y좌표 * 64 (64픽셀로 그림 그리기 때문) -> 가장 오른쪽 하단 꼭짓점이 좌표가 됨
 		}
 		draw_pixels_of_tile(game, line[i]);
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \

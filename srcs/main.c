@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:05:58 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/09 16:45:23 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 12:49:17 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,10 @@ int	main(int argc, char *argv[])
 	fd = open(argv[1], O_RDONLY); // 맵을 새로 읽어 오기 위해서 한번 더 open
 	if (fd == -1)
 		close_game_with_error(-1);
-	init_map(&game, fd); // 맵 입력후 유효성 검증
+	init_map(&game, fd); // 맵 입력후 유효성 검증 및 초기 맵 그리기
 	close(fd);
-	mlx_hook(game.win_ptr, X_EVENT_KEYPRESS, 0, &press_key, &game); // mlx 그리기
-	mlx_hook(game.win_ptr, X_EVENT_EXIT, 0, &close_game, &game);
+	mlx_hook(game.win_ptr, X_EVENT_KEYPRESS, 0, &press_key, &game); // 플레이어 움직임에 따라 맵 그리기
+	mlx_hook(game.win_ptr, X_EVENT_EXIT, 0, &close_game, &game); // 게임 종료
 	mlx_loop(game.mlx_ptr);
 	return (0);
 }
