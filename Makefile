@@ -8,57 +8,57 @@ RM = rm -f
 AR = ar
 ARFLAGS = crs
 
-INCLUDES = ./libft.h
+INCS = include
 
-SRCS_NM = ft_isalpha.c \
-		  ft_isdigit.c \
-		  ft_isalnum.c \
-		  ft_isascii.c \
-		  ft_isprint.c \
-		  ft_isspace.c \
-		  ft_strlen.c \
-		  ft_memset.c \
-		  ft_bzero.c \
-		  ft_memcpy.c \
-		  ft_memmove.c \
-		  ft_strlcpy.c \
-		  ft_strlcat.c \
-		  ft_strncmp.c \
-		  ft_toupper.c \
-		  ft_tolower.c \
-		  ft_strchr.c \
-		  ft_strrchr.c \
-		  ft_memchr.c \
-		  ft_memcmp.c \
-		  ft_strnstr.c \
-		  ft_atoi.c \
-		  ft_calloc.c \
-		  ft_strdup.c \
-		  ft_substr.c \
-		  ft_strjoin.c \
-		  ft_strtrim.c \
-		  ft_split.c \
-		  ft_itoa.c \
-		  ft_strmapi.c \
-		  ft_striteri.c \
-		  ft_putchar_fd.c \
-		  ft_putnchar_fd.c \
-		  ft_putnbr_base_fd.c \
-		  ft_putstr_fd.c \
-		  ft_putendl_fd.c \
-		  ft_putnbr_fd.c \
-		  ft_isspace.c \
-		  ft_nbrlen.c
+SRCS_NM = mandatory/ft_isalpha.c \
+		  mandatory/ft_isdigit.c \
+		  mandatory/ft_isalnum.c \
+		  mandatory/ft_isascii.c \
+		  mandatory/ft_isprint.c \
+		  mandatory/ft_isspace.c \
+		  mandatory/ft_strlen.c \
+		  mandatory/ft_memset.c \
+		  mandatory/ft_bzero.c \
+		  mandatory/ft_memcpy.c \
+		  mandatory/ft_memmove.c \
+		  mandatory/ft_strlcpy.c \
+		  mandatory/ft_strlcat.c \
+		  mandatory/ft_strncmp.c \
+		  mandatory/ft_toupper.c \
+		  mandatory/ft_tolower.c \
+		  mandatory/ft_strchr.c \
+		  mandatory/ft_strrchr.c \
+		  mandatory/ft_memchr.c \
+		  mandatory/ft_memcmp.c \
+		  mandatory/ft_strnstr.c \
+		  mandatory/ft_atoi.c \
+		  mandatory/ft_calloc.c \
+		  mandatory/ft_strdup.c \
+		  mandatory/ft_substr.c \
+		  mandatory/ft_strjoin.c \
+		  mandatory/ft_strtrim.c \
+		  mandatory/ft_split.c \
+		  mandatory/ft_itoa.c \
+		  mandatory/ft_strmapi.c \
+		  mandatory/ft_striteri.c \
+		  mandatory/ft_putchar_fd.c \
+		  mandatory/ft_putnchar_fd.c \
+		  mandatory/ft_putnbr_base_fd.c \
+		  mandatory/ft_putstr_fd.c \
+		  mandatory/ft_putendl_fd.c \
+		  mandatory/ft_putnbr_fd.c \
+		  mandatory/ft_isspace.c \
+		  mandatory/ft_nbrlen.c
 
-SRCS_BN = ft_lstnew.c \
-		  ft_lstadd_front.c \
-		  ft_lstsize.c \
-		  ft_lstlast.c \
-		  ft_lstadd_back.c \
-		  ft_lstdelone.c \
-		  ft_lstclear.c \
-		  ft_lstiter.c \
-		  ft_lstmap.c
+SRCS_BN = bonus/ft_lstnew.c \
+		  bonus/ft_lstadd_front.c \
+		  bonus/ft_lstsize.c \
+		  bonus/ft_lstlast.c \
+		  bonus/ft_lstadd_back.c \
+		  bonus/ft_lstdelone.c \
+		  bonus/ft_lstclear.c \
+		  bonus/ft_lstiter.c \
+		  bonus/ft_lstmap.c
 
 OBJS = $(SRCS_NM:.c=.o)
 
@@ -73,7 +73,7 @@ endif
 all : $(NAME)
 
 .c.o : $(SRCS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $< -I$(INCS)
 
 $(NAME) : $(OBJ_FILES)
 	$(AR) $(ARFLAGS) $@ $^
