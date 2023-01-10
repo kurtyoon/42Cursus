@@ -1,35 +1,38 @@
-NAME = libftprintf.a
-LIBFT = libft
-LIBFT_LIB = libft.a
-
-SRCS = ./ft_printf.c ./ft_format.c ./ft_parse.c ./ft_print_chars.c ./ft_print_hex.c ./ft_print_nbrs.c ./ft_print_point.c ./ft_print_utils.c
-OBJS = $(SRCS:.c=.o)
-INCS = .
-AR = ar rcs
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-RM = rm -rf
+NAME = libftprintf.a
 
-.c.o: $(SRCS)
-	$(CC) $(CFLAGS) -c -o $@ $< -I$(INCS)
+SRCS =	mandatory/ft_printf.c mandatory/ft_format.c \
+		mandatory/ft_parse.c mandatory/ft_print_chars.c \
+		mandatory/ft_print_hex.c mandatory/ft_print_nbrs.c \
+		mandatory/ft_print_point.c mandatory/ft_print_utils.c
+OBJS = $(SRCS:.c=.o)
+INCS = include
 
-$(NAME): $(OBJS)
-	make all -C $(LIBFT)/
-	cp $(LIBFT)/$(LIBFT_LIB) $(NAME)
-	$(AR) $(NAME) $(OBJS)
+LIBFT = include/libft
+LIBFT_LIB = libft.a
 
 all: $(NAME)
 
-fclean: clean
-	$(RM) $(NAME)
-	make fclean -C $(LIBFT)
+$(NAME) : $(OBJS)
+	make -C $(LIBFT) bonus
+	cp $(LIBFT)/$(LIBFT_LIB) $(NAME)
+	ar rc $@ $^
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCS)
 
 clean:
-	$(RM) $(OBJS)
-	make clean -C $(LIBFT)
+	rm -rf $(OBJS)
+	make -C $(LIBFT) clean
 
-bonus: $(NAME)
+
+fclean: clean
+	rm -rf $(NAME)
+	make -C $(LIBFT) fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus: $(NAME)
+
+.PHONY: all clean fclean re bonus
