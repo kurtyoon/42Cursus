@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 15:12:30 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/06 02:05:09 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/10 16:45:36 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "../include/get_next_line_bonus.h"
 
 char	*ft_strchr(const char *s, int c)
 {

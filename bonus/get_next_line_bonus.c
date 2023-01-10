@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/24 15:11:25 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/08 17:56:33 by cyun             ###   ########seoul.kr  */
+/*   Created: 2022/07/24 15:12:26 by cyun              #+#    #+#             */
+/*   Updated: 2023/01/10 16:45:44 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../include/get_next_line_bonus.h"
 
 char	*store_buf(char *buf, char *backup)
 {
@@ -57,7 +57,7 @@ char	*read_and_store(int fd, char *backup)
 		}
 		buf[rbytes] = '\0';
 		backup = store_buf(buf, backup);
-		if (ft_strchr(backup, '\n'))
+		if (ft_strchr(buf, '\n'))
 			break ;
 	}
 	free(buf);
@@ -98,7 +98,7 @@ char	*backup_next(char *backup)
 	i = 0;
 	while (backup[i] && backup[i] != '\n')
 		i++;
-	if (!backup[i])
+	if (backup[i] != '\n')
 	{
 		free(backup);
 		return (NULL);
@@ -121,14 +121,14 @@ char	*backup_next(char *backup)
 char	*get_next_line(int fd)
 {
 	char		*buf;
-	static char	*backup;
+	static char	*backup[256];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd + 1 > 256 || BUFFER_SIZE <= 0)
 		return (NULL);
-	backup = read_and_store(fd, backup);
-	if (!backup)
+	backup[fd] = read_and_store(fd, backup[fd]);
+	if (!backup[fd])
 		return (NULL);
-	buf = get_line(backup);
-	backup = backup_next(backup);
+	buf = get_line(backup[fd]);
+	backup[fd] = backup_next(backup[fd]);
 	return (buf);
 }
