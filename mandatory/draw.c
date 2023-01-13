@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:28:03 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/10 13:59:01 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/13 16:38:21 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	draw_map(t_game *game, char *line, int y)
 		draw_pixels_of_tile(game, line[x]);
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
 		game->img.img_ptr, x * TILES, y * TILES); // 해당 위치의 이미지 저장값을 출력
-		i++;
+		x++;
 	}
 }

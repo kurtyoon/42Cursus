@@ -6,7 +6,7 @@
 #    By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/13 13:39:25 by hykang            #+#    #+#              #
-#    Updated: 2023/01/10 13:42:58 by cyun             ###   ########seoul.kr   #
+#    Updated: 2023/01/13 16:39:54 by cyun             ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinclude
 NAME = so_long
 
-SRCS =	srcs/main.c srcs/draw.c srcs/init.c \
-		srcs/map.c srcs/player.c srcs/utils.c srcs/path.c
-SRCSB =	srcsb/main_bonus.c srcsb/draw_bonus.c srcsb/init_bonus.c \
-		srcsb/map_bonus.c srcsb/player_bonus.c srcsb/utils_bonus.c \
-		srcsb/path_bonus.c
+SRCS =	mandatory/main.c mandatory/draw.c mandatory/init.c \
+		mandatory/map.c mandatory/player.c mandatory/utils.c mandatory/path.c
+SRCSB =	bonus/main_bonus.c bonus/draw_bonus.c bonus/init_bonus.c \
+		bonus/map_bonus.c bonus/player_bonus.c bonus/utils_bonus.c \
+		bonus/path_bonus.c
 		
 OBJS = $(SRCS:.c=.o)
 OBJSB = $(SRCSB:.c=.o)
@@ -49,12 +49,12 @@ $(NAME): $(OBJECT)
 	$(CC) $(CFLAGS) -I$(MLX_DIR) -I$(GNL_DIR) -c $< -o $@
 
 clean:
-	rm -f *.o
+	rm -rf $(OBJS) $(OJBSB)
 	make -C $(MLX_DIR) clean
 	make -C $(GNL_DIR) clean
 
 fclean: clean
-	rm -f $(NAME) $(OBJS) $(OBJSB)
+	rm -rf $(NAME)
 	make -C $(MLX_DIR) clean
 	make -C $(GNL_DIR) fclean
 
