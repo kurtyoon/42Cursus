@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:40:23 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/10 14:00:19 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/14 23:38:39 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	**init_visited(t_game *game) // visited 배열 생성
 		while (j < game->width)
 			visited[i][++j] = 0; // visited 배열을 0으로 초기화
 	}
+	visitd[i] = 0;
 	return (visited);
 }
 
