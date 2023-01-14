@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:32:42 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/03 18:17:37 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/14 15:55:34 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
 {

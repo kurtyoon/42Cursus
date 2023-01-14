@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 16:27:06 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/14 15:56:08 by cyun             ###   ########seoul.kr  */
+/*   Created: 2023/01/14 15:56:28 by cyun              #+#    #+#             */
+/*   Updated: 2023/01/14 15:56:38 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_max(int n1, int n2)
 {
-	int	cnt;
-
-	cnt = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		cnt++;
-	}
-	return (cnt);
+	if (n1 > n2)
+		return (n1);
+	return (n2);
 }

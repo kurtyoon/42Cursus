@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 18:23:43 by cyun              #+#    #+#             */
-/*   Updated: 2022/08/05 17:58:33 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/14 15:55:12 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {

@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 16:27:06 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/14 15:56:08 by cyun             ###   ########seoul.kr  */
+/*   Created: 2023/01/14 15:57:56 by cyun              #+#    #+#             */
+/*   Updated: 2023/01/14 15:58:04 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_swap(int	*a, int *b)
 {
-	int	cnt;
+	int	tmp;
 
-	cnt = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		cnt++;
-	}
-	return (cnt);
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

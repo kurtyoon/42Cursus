@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:40:23 by cyun              #+#    #+#             */
-/*   Updated: 2022/10/31 11:11:49 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/14 15:58:13 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_putnchar_fd(char c, int fd, int n);
 int		ft_putnbr_base_fd(long n, char *base, int fd);
+int		ft_abs(int n);
+int		ft_max(int n1, int n2);
+int		ft_min(int n1, int n2);
+void	ft_swap(int	*a, int *b);
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);

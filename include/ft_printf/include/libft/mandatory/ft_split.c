@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:45:27 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/22 17:07:11 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/14 15:55:04 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 static char	*ft_strndup(char const *s, char c)
 {

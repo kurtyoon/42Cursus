@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:25:57 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/24 16:45:45 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/14 15:54:44 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {

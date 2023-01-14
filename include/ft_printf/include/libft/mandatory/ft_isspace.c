@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:12:10 by cyun              #+#    #+#             */
-/*   Updated: 2022/10/31 11:08:24 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/14 15:54:31 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 int	ft_isspace(char c)
 {

@@ -6,20 +6,24 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:36:05 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/10 16:54:06 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/14 16:15:03 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "stack.h"
+# include "deque.h"
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
 
-void	st_translate(t_list **stack);
-int		st_order(t_list **a, t_list **b);
-void	st_sort_small(t_list **a, t_list **b);
-int		st_radix_sort(t_list **a, t_list **b, int max_len, int right_shift);
-int		st_get_ordered(t_list *a, t_list *b, char c);
+int		find_dest(t_deque *a, t_node *src);
+int		is_better(int tmp_dest, int tmp_sttp, int dest, int sttp);
+void	get_location(t_deque *a, t_deque *b, int *dest, int *sttp);
+void	last_rotate(t_deque *a);
+void	change_to_idx(t_deque *a);
+void	receive_input(t_deque *a, int argc, char **argv);
+void	append_data(t_deque *x, int data);
+int	binary_search(int *arr, int data, int left, int right);
+void	quick_sort(int *arr, int left, int right);
 
 #endif

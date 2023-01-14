@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 16:27:06 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/14 15:56:08 by cyun             ###   ########seoul.kr  */
+/*   Created: 2023/01/14 15:52:51 by cyun              #+#    #+#             */
+/*   Updated: 2023/01/14 15:53:34 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_abs(int n)
 {
-	int	cnt;
-
-	cnt = 0;
-	while (lst)
-	{
-		lst = lst->next;
-		cnt++;
-	}
-	return (cnt);
+	if (n < 0)
+		return (-n);
+	return (n);
 }

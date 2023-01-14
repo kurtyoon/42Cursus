@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 18:15:12 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/22 15:57:48 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/14 15:54:56 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 void	rec_putnbr(int nb, int fd)
 {

@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:14:57 by cyun              #+#    #+#             */
-/*   Updated: 2022/07/22 16:58:34 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/14 15:54:33 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 int	count_nbr(long long n)
 {

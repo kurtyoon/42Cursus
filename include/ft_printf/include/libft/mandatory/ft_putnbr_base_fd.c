@@ -6,11 +6,11 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 10:46:58 by cyun              #+#    #+#             */
-/*   Updated: 2022/10/31 11:08:06 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/14 15:54:00 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 int	ft_putnbr_base_fd(long n, char *base, int fd)
 {

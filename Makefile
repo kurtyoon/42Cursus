@@ -4,12 +4,12 @@ RM = rm -rf
 NAME = push_swap
 
 SRCS = 	mandatory/main.c \
-		mandatory/order_utils.c \
+		mandatory/parse.c \
 		mandatory/order.c \
-		mandatory/stack_concurrent.c \
-		mandatory/stack_operation.c \
-		mandatory/stack_utils.c \
-		mandatory/stack.c
+		mandatory/deque_concurrent.c \
+		mandatory/deque_operation.c \
+		mandatory/deque_utils.c \
+		mandatory/deque.c
 OBJS = $(SRCS:.c=.o)
 INCS = include
 
