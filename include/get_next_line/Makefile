@@ -6,7 +6,7 @@
 #    By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/08 15:27:07 by cyun              #+#    #+#              #
-#    Updated: 2023/01/10 16:43:40 by cyun             ###   ########seoul.kr   #
+#    Updated: 2023/01/14 18:35:41 by cyun             ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,10 @@ $(NAME): $(OBJECT)
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCS)
 
 clean:
-	rm -f $(OBJS) $(OBJSB)
+	rm -rf $(OBJS) $(OBJSB)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 

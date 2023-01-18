@@ -52,7 +52,8 @@ SRCS_NM = mandatory/ft_isalpha.c \
 		  mandatory/ft_swap.c \
 		  mandatory/ft_min.c \
 		  mandatory/ft_max.c \
-		  mandatory/ft_abs.c
+		  mandatory/ft_abs.c \
+		  mandatory/ft_strcmp.c
 
 SRCS_BN = bonus/ft_lstnew.c \
 		  bonus/ft_lstadd_front.c \

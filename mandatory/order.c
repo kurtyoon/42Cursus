@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 01:00:05 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/14 16:16:27 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/19 00:36:17 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	is_better(int tmp_dest, int tmp_sttp, int dest, int sttp)
 
 void	get_location(t_deque *a, t_deque *b, int *dest, int *sttp)
 {
-	int 	i;
+	int		i;
 	int		tmp_dest;
 	int		tmp_sttp;
 	t_node	*p;

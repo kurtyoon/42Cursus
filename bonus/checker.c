@@ -1,36 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deque_utils.c                                      :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/14 00:43:07 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/19 00:36:31 by cyun             ###   ########seoul.kr  */
+/*   Created: 2023/01/14 16:51:32 by cyun              #+#    #+#             */
+/*   Updated: 2023/01/14 17:07:35 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
-
-void	init_arr(int **arr, int **dup_check, t_deque *a)
-{
-	t_node	*p;
-	int		i;
-
-	*arr = malloc(sizeof(int) * a->size);
-	*dup_check = malloc(sizeof(int) * a->size);
-	if (arr == NULL || dup_check == NULL)
-		exit(1);
-	p = a->top;
-	i = 0;
-	while (i < a->size)
-	{
-		(*arr)[i] = p->data;
-		(*dup_check)[i] = 0;
-		p = p->next;
-		i++;
-	}
-}
+#include "../include/checker.h"
 
 void	init_deque(t_deque *a, t_deque *b)
 {
@@ -44,10 +24,19 @@ void	init_deque(t_deque *a, t_deque *b)
 	b->name = 'b';
 }
 
-int	deque_is_sorted(t_deque *a, t_deque *b)
+void	parse_argument(t_deque *a, t_deque *b, int argc, char **argv)
 {
-	t_node	*p;
+	if (argc == 1)
+		exit(0);
+	init_deque(a, b);
+	receive_input(a, argc, argv);
+	change_to_idx(a);
+}
+
+int	check_sorted(t_deque *a, t_deque *b)
+{
 	int		i;
+	t_node	*p;
 
 	if (b->size)
 		return (0);
@@ -61,4 +50,20 @@ int	deque_is_sorted(t_deque *a, t_deque *b)
 		p = p->next;
 	}
 	return (1);
+}
+
+int	main(int argc, char **argv)
+{
+	t_deque		a;
+	t_deque		b;
+	char		**commands;
+
+	parse_argument(&a, &b, argc, argv);
+	commands = read_commands();
+	execute_commands(&a, &b, commands);
+	if (check_sorted(&a, &b))
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
+	return (0);
 }
