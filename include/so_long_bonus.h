@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:28:13 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/10 14:00:11 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/19 18:28:36 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ typedef struct s_check
 	int	collectible;
 	int	**visited;
 }	t_check;
-
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);

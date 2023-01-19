@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:05:58 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/10 12:54:07 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/19 18:47:56 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	close_game_with_error(int type)
 	exit(1);
 }
 
-// 몇 번 움직였는지 출력하는 함수
 void	print_move(char c)
 {
 	ft_putstr_fd("Move : ", 1);
@@ -75,10 +74,7 @@ int	game_start(t_game *game)
 	char	*move_cnt;
 
 	move_cnt = ft_itoa(game->move);
-	draw_pixels_of_tile(game, '0'); // 플레이어에 대한 이미지 업데이트
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
-	game->position.img_ptr, game->position.tile_x, game->position.tile_y);
-	mlx_string_put(game->mlx_ptr, game->win_ptr, 64, 64, 999999999, "MOVE COUNT: ");
+	mlx_string_put(game->mlx_ptr, game->win_ptr, 64, 64, 999999999, "MOVE: ");
 	mlx_string_put(game->mlx_ptr, game->win_ptr, 150, 64, 999999999, move_cnt);
 	free(move_cnt);
 	return (0);
@@ -91,8 +87,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("[Error]\n", 1);
-		ft_putstr_fd("Try './so_long [Map_name.ber]'\n", 1);
+		ft_putstr_fd("[Error]\nTry './so_long [Map_name.ber]'\n", 1);
 		return (0);
 	}
 	fd = open(argv[1], O_RDONLY);

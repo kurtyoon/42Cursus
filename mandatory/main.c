@@ -6,13 +6,12 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:05:58 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/10 12:49:17 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/19 18:22:53 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-// 정상적으로 게임이 끝났을 때 프로그램 종료 함수
 int	close_game(t_game *game, int type)
 {
 	int	i;
@@ -35,7 +34,6 @@ int	close_game(t_game *game, int type)
 	exit(0);
 }
 
-// 에러 메시지 출력 함수
 int	close_game_with_error(int type)
 {
 	ft_putstr_fd("[Error]\n", 1);
@@ -64,7 +62,6 @@ int	close_game_with_error(int type)
 	exit(1);
 }
 
-// 몇 번 움직였는지 출력하는 함수
 void	print_move(char c)
 {
 	ft_putstr_fd("Move : ", 1);
@@ -77,26 +74,26 @@ int	main(int argc, char *argv[])
 	int		fd;
 	t_game	game;
 
-	if (argc != 2) // 인자가 잘못 됐을 때
+	if (argc != 2)
 	{
 		ft_putstr_fd("[Error]\n", 1);
 		ft_putstr_fd("Try './so_long [Map_name.ber]'\n", 1);
 		return (0);
 	}
-	fd = open(argv[1], O_RDONLY); // 맵 열기
+	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		close_game_with_error(-1);
-	init_param(&game); // 구조체 초기화
-	get_map(&game, fd); // 맵의 요소 입력
-	init_minilibx(&game); // mlx를 위한 초기화
+	init_param(&game);
+	get_map(&game, fd);
+	init_minilibx(&game);
 	close(fd);
-	fd = open(argv[1], O_RDONLY); // 맵을 새로 읽어 오기 위해서 한번 더 open
+	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		close_game_with_error(-1);
-	init_map(&game, fd); // 맵 입력후 유효성 검증 및 초기 맵 그리기
+	init_map(&game, fd);
 	close(fd);
-	mlx_hook(game.win_ptr, X_EVENT_KEYPRESS, 0, &press_key, &game); // 플레이어 움직임에 따라 맵 그리기
-	mlx_hook(game.win_ptr, X_EVENT_EXIT, 0, &close_game, &game); // 게임 종료
+	mlx_hook(game.win_ptr, X_EVENT_KEYPRESS, 0, &press_key, &game);
+	mlx_hook(game.win_ptr, X_EVENT_EXIT, 0, &close_game, &game);
 	mlx_loop(game.mlx_ptr);
 	return (0);
 }
