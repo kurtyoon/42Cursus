@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 00:22:20 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/16 16:50:38 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/20 21:08:18 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "ft_printf/include/ft_printf.h"
 # include "get_next_line/include/get_next_line.h"
 
-// 이중 연결 리스트
+// 양방향 연결리스트
 typedef struct s_node
 {
 	int				data;
@@ -23,7 +23,7 @@ typedef struct s_node
 	struct s_node	*prev;
 }	t_node;
 
-// 이중 연결 리스트로 이뤄진 덱
+// top과 bottom이 존재하는 덱
 typedef struct s_deque
 {
 	t_node	*top;
@@ -32,17 +32,24 @@ typedef struct s_deque
 	int		size;
 }	t_deque;
 
+// deque.c
 void	deque_add_top(t_deque *x, t_node *new_node);
 void	deque_add_bottom(t_deque *x, t_node *new_node);
 t_node	*deque_pop_top(t_deque *x);
 t_node	*deque_pop_bottom(t_deque *x);
+
+// deque_operation.c
 void	deque_swap_ab(t_deque *x);
 void	deque_push_ab(t_deque *x, t_deque *y);
 void	deque_rotate_ab(t_deque *x);
 void	deque_rrotate_ab(t_deque *x);
+
+// deque_concurrent.c
 void	deque_swap_ss(t_deque *x, t_deque *y);
 void	deque_rotate_rr(t_deque *x, t_deque *y);
 void	deque_rrotate_rrr(t_deque *x, t_deque *y);
+
+// deque_utils.c
 void	init_arr(int **arr, int **dup_check, t_deque *a);
 void	init_deque(t_deque *a, t_deque *b);
 int		deque_is_sorted(t_deque *a, t_deque *b);

@@ -6,92 +6,88 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:05:08 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/14 16:13:02 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/21 01:10:44 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	change_to_idx(t_deque *a)
+void	deque_is_duplicated(t_deque *a)
 {
 	int		*arr;
-	int		*dup_ck;
+	int		*check;
 	int		i;
-	t_node	*p;
+	t_node	*tmp;
 
-	init_arr(&arr, &dup_ck, a);
+	init_arr(&arr, &check, a);
 	quick_sort(arr, 0, a->size - 1);
-	p = a->top;
+	tmp = a->top;
 	i = 0;
 	while (i < a->size)
 	{
-		p->data = binary_search(arr, p->data, 0, a->size - 1);
-		if (dup_ck[p->data] == 0)
-			dup_ck[p->data] = 1;
-		else
-		{
-			ft_printf("Error\n");
-			exit(1);
-		}
-		p = p->next;
+		tmp->data = binary_search(arr, tmp->data, 0, a->size - 1); // 이진 탐색으로 인덱스를 가져옴
+		if (check[tmp->data] == 0) // 해당 인덱스 값이 0 이라면 중복 x
+			check[tmp->data] = 1;
+		else // 아닐 경우 중복을 의미
+			ft_print_err("Error\n");
+		tmp = tmp->next; // 덱 순회
 		i++;
 	}
 	free(arr);
-	free(dup_ck);
+	free(check);
 }
 
 void	receive_input(t_deque *a, int argc, char **argv)
 {
-	char	**p;
-	char	**save_p;
+	char	**args;
 	int		i;
 
-	if (argc == 2)
+	if (argc == 2) // 인자가 2개일 때 '1 2 3 4 5' 이런 식으로 입력
 	{
-		p = ft_split(argv[1], ' ');
-		save_p = p;
-		while (*p)
+		args = ft_split(argv[1], ' '); // ' '을 기준으로 split해서 저장
+		while (*args)
 		{
-			append_data(a, ft_atoi(*p));
-			free(*p);
-			p++;
+			deque_insert_data(a, ft_atoi(*args)); // split으로 쪼갠 숫자들을 atoi로 정수화 해서 데이터 입력
+			free(*args);
+			 args++;
 		}
-		free(save_p);
+		free(args);
 	}
-	else
+	else // 1 2 3 4 5 이런 식으로 입력
 	{
 		i = 0;
-		while (++i < argc)
-			append_data(a, ft_atoi(argv[i]));
+		while (++i < argc) // 그대로 정수화 해서 데이터 입력
+			deque_insert_data(a, ft_atoi(argv[i]));
 	}
 }
 
-void	append_data(t_deque *x, int data)
+void	deque_insert_data(t_deque *a, int data)
 {
 	t_node	*new_node;
 
-	new_node = malloc(sizeof(t_node));
+	new_node = (t_node *)malloc(sizeof(t_node));
 	if (new_node == NULL)
 		exit(1);
 	new_node->prev = NULL;
 	new_node->next = NULL;
 	new_node->data = data;
-	if (!(x->top))
+	if (!(a->top)) // 덱 a에 요소가 없다면
 	{
-		x->top = new_node;
-		x->bottom = new_node;
+		a->top = new_node;
+		a->bottom = new_node; // top과 bottom에 입력
 	}
-	else
+	else // 있다면
 	{
-		x->bottom->next = new_node;
-		new_node->prev = x->bottom;
-		new_node->next = x->top;
-		x->top->prev = new_node;
-		x->bottom = new_node;
+		a->bottom->next = new_node;
+		new_node->prev = a->bottom;
+		new_node->next = a->top;
+		a->top->prev = new_node;
+		a->bottom = new_node;
 	}
-	x->size++;
+	a->size++; // 덱 a의 크기 증가
 }
 
+// 이진탐색 코드
 int	binary_search(int *arr, int data, int left, int right)
 {
 	int	mid;
@@ -105,30 +101,31 @@ int	binary_search(int *arr, int data, int left, int right)
 		return (mid);
 }
 
+// 퀵 정렬 코드
 void	quick_sort(int *arr, int left, int right)
 {
-	int	l;
-	int	r;
+	int	low;
+	int	high;
 	int	pivot;
 
-	l = left;
-	r = right;
+	low = left;
+	high = right;
 	pivot = arr[(left + right) / 2];
-	while (l <= r)
+	while (low <= high)
 	{
-		while (arr[l] < pivot)
-			l++;
-		while (arr[r] > pivot)
-			r--;
-		if (l <= r)
+		while (arr[low] < pivot)
+			low++;
+		while (arr[high] > pivot)
+			high--;
+		if (low <= high)
 		{
-			ft_swap(arr + l, arr + r);
-			l++;
-			r--;
+			ft_swap(arr + low, arr + high);
+			low++;
+			high--;
 		}
 	}
-	if (left < r)
-		quick_sort(arr, left, r);
-	if (right > l)
-		quick_sort(arr, l, right);
+	if (left < high)
+		quick_sort(arr, left, high);
+	if (right > low)
+		quick_sort(arr, low, right);
 }

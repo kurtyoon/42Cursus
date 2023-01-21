@@ -6,12 +6,13 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 00:10:42 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/19 00:33:46 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/19 20:23:08 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+// 덱의 top에 요소 추가
 void	deque_add_top(t_deque *deque, t_node *new_node)
 {
 	t_node	*node;
@@ -32,6 +33,7 @@ void	deque_add_top(t_deque *deque, t_node *new_node)
 	deque->bottom->next = deque->top;
 }
 
+// 덱의 bottom에 요소 추가
 void	deque_add_bottom(t_deque *deque, t_node *new_node)
 {
 	t_node	*node;
@@ -52,6 +54,7 @@ void	deque_add_bottom(t_deque *deque, t_node *new_node)
 	deque->top->prev = deque->bottom;
 }
 
+// 덱의 top의 요소 반환하고 삭제
 t_node	*deque_pop_top(t_deque *deque)
 {
 	t_node	*p;
@@ -76,6 +79,7 @@ t_node	*deque_pop_top(t_deque *deque)
 	return (p);
 }
 
+// 덱의 bottom의 요소 반환하고 삭제
 t_node	*deque_pop_bottom(t_deque *deque)
 {
 	t_node	*p;

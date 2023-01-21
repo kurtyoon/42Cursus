@@ -6,47 +6,46 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:06:09 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/19 00:33:16 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/21 19:50:21 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	sort_just3(t_deque *a)
+// 요소가 3개일 때 경우의 수를 정해줌
+void	sort_three_pivot(t_deque *a)
 {
-	int	n1;
-	int	n2;
-	int	n3;
+	int	top;
+	int	mid;
+	int	bottom;
 
-	n1 = a->top->data;
-	n2 = a->top->next->data;
-	n3 = a->bottom->data;
-	if (n1 > n2 && n2 < n3 && n1 < n3)
+	top = a->top->data;
+	mid = a->top->next->data;
+	bottom = a->bottom->data;
+	if (top > mid && mid < bottom && top < bottom)
 		deque_swap_ab(a);
-	if (n1 > n2 && n2 > n3 && n1 > n3)
+	if (top > mid && mid > bottom && top > bottom)
 	{
 		deque_swap_ab(a);
 		deque_rrotate_ab(a);
 	}
-	if (n1 > n2 && n2 < n3 && n1 > n3)
+	if (top > mid && mid < bottom && top > bottom)
 		deque_rotate_ab(a);
-	if (n1 < n2 && n2 > n3 && n1 < n3)
+	if (top < mid && mid > bottom && top < bottom)
 	{
 		deque_swap_ab(a);
 		deque_rotate_ab(a);
 	}
-	if (n1 < n2 && n2 > n3 && n1 > n3)
+	if (top < mid && mid > bottom && top > bottom)
 		deque_rrotate_ab(a);
 }
 
-void	divide_3part(t_deque *a, t_deque *b, int pivot1, int pivot2)
+void	divide_three_pivot(t_deque *a, t_deque *b, int pivot1, int pivot2)
 {
 	int	cnt;
 
 	if (a->size > 10)
 	{
-		pivot1 = a->size / 3 * 1;
-		pivot2 = a->size / 3 * 2;
 		cnt = a->size;
 		while (cnt && a->size > 3)
 		{
@@ -62,20 +61,20 @@ void	divide_3part(t_deque *a, t_deque *b, int pivot1, int pivot2)
 			cnt--;
 		}
 	}
-	while (a->size > 3)
+	while (a->size > 3) // 덱 a에 3개의 요소만 남을 때 까지 push b
 		deque_push_ab(b, a);
-	if (a->size == 3)
-		sort_just3(a);
+	if (a->size == 3) // 덱 a에 3개의 요소만 남았을 경우 정해진 알고리즘으로 정렬
+		sort_three_pivot(a);
 }
 
 void	parse_argument(t_deque *a, t_deque *b, int argc, char **argv)
 {
-	if (argc == 1)
+	if (argc == 1) // 인자가 1개라면 종료
 		exit(0);
-	init_deque(a, b);
-	receive_input(a, argc, argv);
-	change_to_idx(a);
-	if (deque_is_sorted(a, b))
+	init_deque(a, b); // 덱 구조체 초기화
+	receive_input(a, argc, argv); // 덱에 인자 입력
+	deque_is_duplicated(a); // 덱 중복 체크
+	if (deque_is_sorted(a, b)) // 덱 정렬여부 체크
 		exit(0);
 }
 
@@ -98,7 +97,7 @@ int	main(int argc, char **argv)
 	t_deque	a;
 	t_deque	b;
 
-	parse_argument(&a, &b, argc, argv);
-	divide_3part(&a, &b, a.size / 3 * 1, a.size / 3 * 2);
+	parse_argument(&a, &b, argc, argv); // parsing
+	divide_three_pivot(&a, &b, a.size / 3 * 1, a.size / 3 * 2); // 세 부분으로 나누기
 	greedy(&a, &b);
 }

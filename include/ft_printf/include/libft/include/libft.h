@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:40:23 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/14 18:46:42 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/20 21:44:53 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int		ft_max(int n1, int n2);
 int		ft_min(int n1, int n2);
 void	ft_swap(int	*a, int *b);
 int		ft_strcmp(char *s1, char *s2);
+void	ft_print_err(char *str);
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
