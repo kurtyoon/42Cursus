@@ -6,19 +6,21 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:36:05 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/21 01:08:21 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/22 11:14:18 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "deque.h"
-# include "stdio.h"
 
-int		find_dest(t_deque *a, t_node *src);
-int		is_better(int tmp_dest, int tmp_sttp, int dest, int sttp);
-void	get_location(t_deque *a, t_deque *b, int *dest, int *sttp);
+// order.c
+int		get_position(t_deque *a, t_node *src);
+int		compare_cnt(int pos_a, int pos_b, int move_a, int move_b);
+void	get_location(t_deque *a, t_deque *b, int *move_a, int *move_b);
 void	last_rotate(t_deque *a);
+
+// parse.c
 void	deque_is_duplicated(t_deque *a);
 void	receive_input(t_deque *a, int argc, char **argv);
 void	deque_insert_data(t_deque *x, int data);

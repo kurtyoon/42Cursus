@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 00:22:20 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/20 21:08:18 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/23 21:55:35 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void	init_arr(int **arr, int **dup_check, t_deque *a);
 void	init_deque(t_deque *a, t_deque *b);
 int		deque_is_sorted(t_deque *a, t_deque *b);
 void	greedy_rotate(t_deque *a, t_deque *b, int dest, int sttp);
+void	free_node(t_deque *a);
 
 #endif

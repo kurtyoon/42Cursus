@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:05:08 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/21 01:10:44 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/22 11:13:00 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	receive_input(t_deque *a, int argc, char **argv)
 			free(*args);
 			 args++;
 		}
-		free(args);
 	}
 	else // 1 2 3 4 5 이런 식으로 입력
 	{

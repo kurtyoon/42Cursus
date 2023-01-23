@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 01:00:05 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/21 12:13:17 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/23 21:30:56 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	get_location(t_deque *a, t_deque *b, int *move_a, int *move_b)
 			*move_a = pos_a;
 			*move_b = pos_b;
 		}
-		tmp = tmp->next;
+		tmp = tmp->next; // 덱 b 순회
 		i++;
 	}
 }

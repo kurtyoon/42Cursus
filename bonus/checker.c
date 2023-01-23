@@ -6,12 +6,13 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:51:32 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/14 17:07:35 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/21 20:11:22 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/checker.h"
 
+// 덱 구조체 초기화 함수
 void	init_deque(t_deque *a, t_deque *b)
 {
 	a->top = NULL;

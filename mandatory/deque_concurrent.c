@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 00:34:10 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/20 21:36:29 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/22 11:14:49 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	deque_swap_ss(t_deque *x, t_deque *y)
 	q = deque_pop_top(y);
 	deque_add_top(y, p);
 	deque_add_top(y, q);
-	printf("ss\n");
+	ft_printf("ss\n");
 }
 
 void	deque_rotate_rr(t_deque *x, t_deque *y)
@@ -35,18 +35,18 @@ void	deque_rotate_rr(t_deque *x, t_deque *y)
 	p = deque_pop_top(x);
 	if (p == NULL)
 	{
-		printf("Empty deque\n");
+		ft_printf("Empty deque\n");
 		exit(0);
 	}
 	deque_add_bottom(x, p);
 	p = deque_pop_top(y);
 	if (p == NULL)
 	{
-		printf("Empty deque\n");
+		ft_printf("Empty deque\n");
 		exit(0);
 	}
 	deque_add_bottom(y, p);
-	printf("rr\n");
+	ft_printf("rr\n");
 }
 
 void	deque_rrotate_rrr(t_deque *x, t_deque *y)
@@ -56,16 +56,16 @@ void	deque_rrotate_rrr(t_deque *x, t_deque *y)
 	p = deque_pop_bottom(x);
 	if (p == NULL)
 	{
-		printf("Empty deque\n");
+		ft_printf("Empty deque\n");
 		exit(0);
 	}
 	deque_add_top(x, p);
 	p = deque_pop_bottom(y);
 	if (p == NULL)
 	{
-		printf("Empty deque\n");
+		ft_printf("Empty deque\n");
 		exit(0);
 	}
 	deque_add_top(y, p);
-	printf("rrr\n");
+	ft_printf("rrr\n");
 }

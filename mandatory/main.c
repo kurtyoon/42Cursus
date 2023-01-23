@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:06:09 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/21 19:50:21 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/23 21:55:49 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ void	parse_argument(t_deque *a, t_deque *b, int argc, char **argv)
 
 void	greedy(t_deque *a, t_deque *b)
 {
-	int	dest;
-	int	sttp;
+	int	move_a;
+	int	move_b;
 
 	while (b->size)
 	{
-		get_location(a, b, &dest, &sttp);
-		greedy_rotate(a, b, dest, sttp);
+		get_location(a, b, &move_a, &move_b);
+		greedy_rotate(a, b, move_a, move_b);
 		deque_push_ab(a, b);
 	}
 	last_rotate(a);
@@ -100,4 +100,6 @@ int	main(int argc, char **argv)
 	parse_argument(&a, &b, argc, argv); // parsing
 	divide_three_pivot(&a, &b, a.size / 3 * 1, a.size / 3 * 2); // 세 부분으로 나누기
 	greedy(&a, &b);
+	free_node(&a);
+	free_node(&b);
 }

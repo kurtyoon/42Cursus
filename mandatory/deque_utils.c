@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 00:43:07 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/21 19:23:28 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/23 21:55:13 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,20 @@ int	deque_is_sorted(t_deque *a, t_deque *b)
 		tmp = tmp->next; // 덱 순회
 	}
 	return (1); // 정렬이 되어있다면 1 반환
+}
+
+void	free_node(t_deque *a)
+{
+	t_node	*tmp;
+	int		i;
+	int		size;
+
+	i = 0;
+	size = a->size;
+	while (i < size)
+	{
+		tmp = deque_pop_top(a);
+		free(tmp);
+		i++;
+	}
 }
