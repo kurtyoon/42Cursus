@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:06:09 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/23 21:55:49 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/24 17:47:37 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,17 @@ void	divide_three_pivot(t_deque *a, t_deque *b, int pivot1, int pivot2)
 
 void	parse_argument(t_deque *a, t_deque *b, int argc, char **argv)
 {
-	if (argc == 1) // 인자가 1개라면 종료
-		exit(0);
+	if (argc == 1) // 인자가 1개라면 종료 
+		ft_print_err("Error\n");
 	init_deque(a, b); // 덱 구조체 초기화
 	receive_input(a, argc, argv); // 덱에 인자 입력
 	deque_is_duplicated(a); // 덱 중복 체크
 	if (deque_is_sorted(a, b)) // 덱 정렬여부 체크
+	{
+		free_node(a);
+		free_node(b);
 		exit(0);
+	}
 }
 
 void	greedy(t_deque *a, t_deque *b)
@@ -100,6 +104,6 @@ int	main(int argc, char **argv)
 	parse_argument(&a, &b, argc, argv); // parsing
 	divide_three_pivot(&a, &b, a.size / 3 * 1, a.size / 3 * 2); // 세 부분으로 나누기
 	greedy(&a, &b);
-	free_node(&a);
+	free_node(&a); // 덱 메모리 free
 	free_node(&b);
 }

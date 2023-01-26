@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:05:08 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/22 11:13:00 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/24 17:47:18 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	deque_is_duplicated(t_deque *a)
 		if (check[tmp->data] == 0) // 해당 인덱스 값이 0 이라면 중복 x
 			check[tmp->data] = 1;
 		else // 아닐 경우 중복을 의미
+		{
+			free_node(a);
 			ft_print_err("Error\n");
+		}
 		tmp = tmp->next; // 덱 순회
 		i++;
 	}

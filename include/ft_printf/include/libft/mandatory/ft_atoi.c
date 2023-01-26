@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:27:06 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/21 00:24:33 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/01/24 17:38:32 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	num;
-	int	sign;
+	int			i;
+	long long	num;
+	int			sign;
 
 	i = 0;
 	num = 0;
@@ -29,12 +29,14 @@ int	ft_atoi(const char *str)
 			sign *= -1;
 		i++;
 	}
+	if (!str[i])
+		ft_print_err("Error\n");
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		num = num * 10 + (str[i] - '0') * sign;
 		i++;
 	}
-	if (str[i] != '\0')
+	if (str[i] != '\0' || num > 2147483647 || num < -2147483648)
 		ft_print_err("Error\n");
 	return (num);
 }
