@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:05:58 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/19 18:22:53 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/05 19:46:37 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,29 @@ int	close_game(t_game *game, int type)
 
 int	close_game_with_error(int type)
 {
-	ft_putstr_fd("[Error]\n", 1);
+	ft_putstr_fd("[Error]\n", 2);
 	if (type == 0)
 	{
-		ft_putstr_fd("The map must be composed of only ", 1);
-		ft_putstr_fd("5 possible characters(0, 1, C, E, P) !\n", 1);
+		ft_putstr_fd("The map must be composed of only ", 2);
+		ft_putstr_fd("5 possible characters(0, 1, C, E, P) !\n", 2);
 	}
 	else if (type == 1)
-		ft_putstr_fd("There must be only one player !\n", 1);
+		ft_putstr_fd("There must be only one player !\n", 2);
 	else if (type == 2)
-		ft_putstr_fd("Theere must be only one exit !\n", 1);
+		ft_putstr_fd("Theere must be only one exit !\n", 2);
 	else if (type == 3)
-		ft_putstr_fd("The map must be rectangular !\n", 1);
+		ft_putstr_fd("The map must be rectangular !\n", 2);
 	else if (type == 4)
-		ft_putstr_fd("The map must be closed or surrounded by walls !\n", 1);
+		ft_putstr_fd("The map must be closed or surrounded by walls !\n", 2);
 	else if (type == 5)
 	{
-		ft_putstr_fd("Map must have at least one exit, one collectible, ", 1);
-		ft_putstr_fd("and one starting position !\n", 1);
+		ft_putstr_fd("Map must have at least one exit, one collectible, ", 2);
+		ft_putstr_fd("and one starting position !\n", 2);
 	}
 	else if (type == 6)
-		ft_putstr_fd("The map must have valid path !\n", 1);
+		ft_putstr_fd("The map must have valid path !\n", 2);
 	else if (type == -1)
-		ft_putstr_fd("The files does not exist !", 1);
+		ft_putstr_fd("The files does not exist !", 2);
 	exit(1);
 }
 
