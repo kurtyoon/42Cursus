@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:06:09 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/24 17:47:37 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/07 16:52:36 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	divide_three_pivot(t_deque *a, t_deque *b, int pivot1, int pivot2)
 {
 	int	cnt;
 
-	if (a->size > 10)
+	if (a->size > 10) // 덱의 크기가 10보다 크다면
 	{
 		cnt = a->size;
 		while (cnt && a->size > 3)
@@ -103,7 +103,8 @@ int	main(int argc, char **argv)
 
 	parse_argument(&a, &b, argc, argv); // parsing
 	divide_three_pivot(&a, &b, a.size / 3 * 1, a.size / 3 * 2); // 세 부분으로 나누기
-	greedy(&a, &b);
+	greedy(&a, &b); // 그리디 알고리즘
 	free_node(&a); // 덱 메모리 free
 	free_node(&b);
+	while (1);
 }

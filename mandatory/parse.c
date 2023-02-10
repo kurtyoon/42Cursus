@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:05:08 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/24 17:47:18 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/07 16:40:49 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,56 @@ void	deque_is_duplicated(t_deque *a)
 	free(check);
 }
 
+// void	receive_input(t_deque *a, int argc, char **argv)
+// {
+// 	char	**args;
+// 	int		i;
+
+// 	if (argc == 2) // 인자가 2개일 때 '1 2 3 4 5' 이런 식으로 입력
+// 	{
+// 		args = ft_split(argv[1], ' '); // ' '을 기준으로 split해서 저장
+// 		while (*args)
+// 		{
+// 			deque_insert_data(a, ft_atoi(*args)); // split으로 쪼갠 숫자들을 atoi로 정수화 해서 데이터 입력
+// 			args++;
+// 		}
+// 	}
+// 	else // 1 2 3 4 5 이런 식으로 입력
+// 	{
+// 		i = 0;
+// 		while (++i < argc) // 그대로 정수화 해서 데이터 입력
+// 			deque_insert_data(a, ft_atoi(argv[i]));
+// 	}
+// }
+
+int	ft_free_malloc(char **result, size_t k)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < k)
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
+	return (0);
+}
+
 void	receive_input(t_deque *a, int argc, char **argv)
 {
 	char	**args;
 	int		i;
+	int		tmp;
 
-	if (argc == 2) // 인자가 2개일 때 '1 2 3 4 5' 이런 식으로 입력
-	{
-		args = ft_split(argv[1], ' '); // ' '을 기준으로 split해서 저장
-		while (*args)
-		{
-			deque_insert_data(a, ft_atoi(*args)); // split으로 쪼갠 숫자들을 atoi로 정수화 해서 데이터 입력
-			free(*args);
-			 args++;
+	i = 0;
+	while (++i < argc) {
+		tmp = 0;
+		args = ft_split(argv[i], ' ');
+		while (args[tmp]) {
+			deque_insert_data(a, ft_atoi(args[tmp++]));
 		}
-	}
-	else // 1 2 3 4 5 이런 식으로 입력
-	{
-		i = 0;
-		while (++i < argc) // 그대로 정수화 해서 데이터 입력
-			deque_insert_data(a, ft_atoi(argv[i]));
+		ft_free_malloc(args, tmp);
 	}
 }
 

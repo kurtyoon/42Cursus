@@ -6,19 +6,19 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 01:00:05 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/23 21:30:56 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/06 11:40:49 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	get_position(t_deque *a, t_node *src)
+int	get_position(t_deque *a, t_node *src) // 몇 번 움직여야 하는지 찾아줌
 {
 	t_node	*p;
-	int		dest;
+	int		move;
 
 	p = a->top;
-	dest = 0;
+	move = 0;
 	while (p)
 	{
 		if (p->prev->data > src->data && \
@@ -31,11 +31,11 @@ int	get_position(t_deque *a, t_node *src)
 			p->data < src->data && p->prev->data > p->data)
 			break ;
 		p = p->next;
-		dest++;
+		move++;
 	}
-	if (dest > a->size / 2)
-		dest = dest - a->size;
-	return (dest);
+	if (move > a->size / 2) // 절반보다 큰 경우 최적화
+		move = move - a->size;
+	return (move);
 }
 
 int	compare_cnt(int pos_a, int pos_b, int move_a, int move_b)
@@ -62,8 +62,8 @@ void	get_location(t_deque *a, t_deque *b, int *move_a, int *move_b)
 	while (i < b->size)
 	{
 		pos_a = get_position(a, tmp);
-		pos_b = i;
-		if (pos_b > b->size / 2)
+		pos_b = i; // b는 인덱스 만큼 움직여야 함
+		if (pos_b > b->size / 2) // 절반보다 큰 경우 최적화
 			pos_b = i - b->size;
 		if (i == 0 || compare_cnt(pos_a, pos_b, *move_a, *move_b))
 		{
@@ -75,6 +75,7 @@ void	get_location(t_deque *a, t_deque *b, int *move_a, int *move_b)
 	}
 }
 
+// 정해진 그리디 알고리즘
 void	greedy_rotate(t_deque *a, t_deque *b, int move_a, int move_b)
 {
 	if (move_a == move_b)
@@ -104,6 +105,7 @@ void	greedy_rotate(t_deque *a, t_deque *b, int move_a, int move_b)
 		deque_rrotate_ab(b);
 }
 
+// 그래프 형식으로 정렬되어 있는 걸 일자로 변환
 void	last_rotate(t_deque *a)
 {
 	int		turning_point;
