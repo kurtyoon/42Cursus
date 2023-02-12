@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:01:57 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 19:03:18 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 20:06:15 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,21 +79,22 @@ int	main(int argc, char **argv)
 	t_stack	a;
 	t_stack	b;
 
-	if (argc < 2)
+	if (argc < 2) // 인자 예예외외처리
 		return (0);
-	parse_argument(&a, &b, argv, argc);
-	if (!check_sorted(&a))
+	parse_argument(&a, &b, argv, argc); // parse
+	if (!check_sorted(&a)) // 정렬이 되지 않았다면
 	{
-		if (a.size == 3)
-			sort_three(&a);
-		else if (a.size == 5)
-			sort_five(&a, &b);
-		else
+		if (a.size == 3) // 만약 크기가 3이라면
+			sort_three(&a); // 최적화 크기 3 정렬
+		else if (a.size == 5) // 만약 크기가 5라면
+			sort_five(&a, &b); // 최적화 크기 5 정렬
+		else // 아니라면 
 		{
-			divide_three(&a, &b);
-			greedy(&a, &b);
+			divide_three(&a, &b); // 3부분으로 나누고
+			greedy(&a, &b); // greedy 알고리즘 실행
 		}
 	}
-	free(a.stack);
-	free(b.stack);
+	free(a.stack); // 스택 a 해제
+	free(b.stack); // 스택 b 해제
+	return (0);
 }

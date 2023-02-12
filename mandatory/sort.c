@@ -6,12 +6,13 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:10:14 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 18:57:36 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 19:53:00 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+// 스택 정렬 체큰
 int	check_sorted(t_stack *a)
 {
 	int	i;
@@ -26,6 +27,7 @@ int	check_sorted(t_stack *a)
 	return (1);
 }
 
+// 버블정렬 코드
 void	bubble_sort(int *arr, int size)
 {
 	int	i;
@@ -50,6 +52,7 @@ void	bubble_sort(int *arr, int size)
 	}
 }
 
+// 3요소 최적화 정렬
 void	sort_three(t_stack *a)
 {
 	if (a->stack[2] > a->stack[1])
@@ -62,14 +65,15 @@ void	sort_three(t_stack *a)
 	}
 }
 
+// 5요소 최적화 정렬
 void	sort_five(t_stack *a, t_stack *b)
 {
 	int	*arr;
 	int	idx;
 
 	idx = -1;
-	arr = copy_arr(a, 5);
-	bubble_sort(arr, 5);
+	arr = copy_arr(a, 5); // 배열 복사
+	bubble_sort(arr, 5); // 버블 정렬
 	while (++idx < 5)
 	{
 		if (arr[1] >= a->stack[a->top])
@@ -82,5 +86,5 @@ void	sort_five(t_stack *a, t_stack *b)
 		stack_swap_ab(b, 1);
 	stack_push_ab(b, a);
 	stack_push_ab(b, a);
-	free(arr);
+	free(arr); // 배열 해제
 }

@@ -10,7 +10,7 @@ NUM=`./push_swap $ARG | wc -l`
 while [ $INDEX -lt $ITER ]
 do
 echo "$INDEX    :   $NUM `./push_swap $ARG | ./checker $ARG`"
-# echo "$INDEX	:	$NUM"
+
 if [ $NUM -ge $LIMIT ]; then
 NUM_OVER=`expr $NUM_OVER + 1`
 fi
@@ -24,5 +24,5 @@ done
 echo "$NUM_OVER overred operations for $ITER times"
 if [ $NUM_OVER -gt 0 ]; then
 echo "Biggest operation number : $MAX"
-echo "fix it!!!!!!!!!!"
+echo "fix it!"
 fi
