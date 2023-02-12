@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:48:31 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/07 15:23:27 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 13:17:59 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,30 +102,30 @@ char	**read_commands(void)
 	return (result);
 }
 
-int	classify_command(t_deque *a, t_deque *b, char *command)
+int	classify_command(t_stacks *a, t_stacks *b, char *command)
 {
 	if (ft_strcmp(command, "sa") == 0)
-		deque_swap_ab(a);
+		stack_swap_ab(a);
 	else if (ft_strcmp(command, "sb") == 0)
-		deque_swap_ab(b);
+		stack_swap_ab(b);
 	else if (ft_strcmp(command, "ss") == 0)
-		deque_swap_ss(a, b);
+		stack_swap_ss(a, b);
 	else if (ft_strcmp(command, "pa") == 0)
-		deque_push_ab(a, b);
+		stack_push_ab(b, a);
 	else if (ft_strcmp(command, "pb") == 0)
-		deque_push_ab(b, a);
+		stack_push_ab(a, b);
 	else if (ft_strcmp(command, "ra") == 0)
-		deque_rotate_ab(a);
+		stack_rotate_ab(a);
 	else if (ft_strcmp(command, "rb") == 0)
-		deque_rotate_ab(b);
+		stack_rotate_ab(b);
 	else if (ft_strcmp(command, "rr") == 0)
-		deque_rotate_rr(a, b);
+		stack_rotate_rr(a, b);
 	else if (ft_strcmp(command, "rra") == 0)
-		deque_rrotate_ab(a);
+		stack_rrotate_ab(a);
 	else if (ft_strcmp(command, "rrb") == 0)
-		deque_rrotate_ab(b);
+		stack_rrotate_ab(b);
 	else if (ft_strcmp(command, "rrr") == 0)
-		deque_rrotate_rrr(a, b);
+		stack_rrotate_rrr(a, b);
 	else
 		return (-1);
 	return (0);

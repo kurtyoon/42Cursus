@@ -5,159 +5,106 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/14 16:05:08 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/07 16:40:49 by cyun             ###   ########seoul.kr  */
+/*   Created: 2023/02/10 22:04:10 by cyun              #+#    #+#             */
+/*   Updated: 2023/02/12 13:19:16 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	deque_is_duplicated(t_deque *a)
+int	check_duplicate(t_stacks *a)
 {
-	int		*arr;
-	int		*check;
-	int		i;
-	t_node	*tmp;
+	int	i;
 
-	init_arr(&arr, &check, a);
-	quick_sort(arr, 0, a->size - 1);
-	tmp = a->top;
 	i = 0;
-	while (i < a->size)
+	while (i < a->top)
 	{
-		tmp->data = binary_search(arr, tmp->data, 0, a->size - 1); // 이진 탐색으로 인덱스를 가져옴
-		if (check[tmp->data] == 0) // 해당 인덱스 값이 0 이라면 중복 x
-			check[tmp->data] = 1;
-		else // 아닐 경우 중복을 의미
+		if (a->stack[i] == a->stack[a->top])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	word_cnt(const char *str)
+{
+	size_t	size;
+	int		flag;
+
+	size = 0;
+	flag = 1;
+	while (*str)
+	{
+		if (flag && *str != ' ')
 		{
-			free_node(a);
-			ft_print_err("Error\n");
+			size++;
+			flag = 0;
 		}
-		tmp = tmp->next; // 덱 순회
-		i++;
+		if (*str == ' ')
+			flag = 1;
+		str++;
 	}
-	free(arr);
-	free(check);
+	if (!size)
+		ft_print_err("Error\n");
+	return (size);
 }
 
-// void	receive_input(t_deque *a, int argc, char **argv)
-// {
-// 	char	**args;
-// 	int		i;
-
-// 	if (argc == 2) // 인자가 2개일 때 '1 2 3 4 5' 이런 식으로 입력
-// 	{
-// 		args = ft_split(argv[1], ' '); // ' '을 기준으로 split해서 저장
-// 		while (*args)
-// 		{
-// 			deque_insert_data(a, ft_atoi(*args)); // split으로 쪼갠 숫자들을 atoi로 정수화 해서 데이터 입력
-// 			args++;
-// 		}
-// 	}
-// 	else // 1 2 3 4 5 이런 식으로 입력
-// 	{
-// 		i = 0;
-// 		while (++i < argc) // 그대로 정수화 해서 데이터 입력
-// 			deque_insert_data(a, ft_atoi(argv[i]));
-// 	}
-// }
-
-int	ft_free_malloc(char **result, size_t k)
+void	init_stacks(t_stacks *a, t_stacks *b, int size)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < k)
-	{
-		free(result[i]);
-		i++;
-	}
-	free(result);
-	return (0);
-}
-
-void	receive_input(t_deque *a, int argc, char **argv)
-{
-	char	**args;
-	int		i;
-	int		tmp;
-
-	i = 0;
-	while (++i < argc) {
-		tmp = 0;
-		args = ft_split(argv[i], ' ');
-		while (args[tmp]) {
-			deque_insert_data(a, ft_atoi(args[tmp++]));
-		}
-		ft_free_malloc(args, tmp);
-	}
-}
-
-void	deque_insert_data(t_deque *a, int data)
-{
-	t_node	*new_node;
-
-	new_node = (t_node *)malloc(sizeof(t_node));
-	if (new_node == NULL)
+	a->stack = (int *)malloc(sizeof(int) * size);
+	b->stack = (int *)malloc(sizeof(int) * size);
+	a->top = -1;
+	b->top = -1;
+	a->size = size;
+	b->size = size;
+	a->name = 'a';
+	b->name = 'b';
+	if (!a->stack || !b->stack)
 		exit(1);
-	new_node->prev = NULL;
-	new_node->next = NULL;
-	new_node->data = data;
-	if (!(a->top)) // 덱 a에 요소가 없다면
-	{
-		a->top = new_node;
-		a->bottom = new_node; // top과 bottom에 입력
-	}
-	else // 있다면
-	{
-		a->bottom->next = new_node;
-		new_node->prev = a->bottom;
-		new_node->next = a->top;
-		a->top->prev = new_node;
-		a->bottom = new_node;
-	}
-	a->size++; // 덱 a의 크기 증가
 }
 
-// 이진탐색 코드
-int	binary_search(int *arr, int data, int left, int right)
+void	swap_stack(t_stacks *a)
 {
-	int	mid;
+	int	left;
+	int	right;
+	int	tmp;
 
-	mid = (left + right) / 2;
-	if (arr[mid] < data)
-		return (binary_search(arr, data, mid + 1, right));
-	else if (arr[mid] > data)
-		return (binary_search(arr, data, left, mid - 1));
-	else
-		return (mid);
+	left = 0;
+	right = a->top;
+	while (left < right)
+	{
+		tmp = a->stack[left];
+		a->stack[left] = a->stack[right];
+		a->stack[right] = tmp;
+		left++;
+		right--;
+	}
 }
 
-// 퀵 정렬 코드
-void	quick_sort(int *arr, int left, int right)
+void	parse_argument(t_stacks *a, t_stacks *b, char **argv, int argc)
 {
-	int	low;
-	int	high;
-	int	pivot;
+	int		i;
+	int		tmp_i;
+	int		size;
+	char	**tmp;
 
-	low = left;
-	high = right;
-	pivot = arr[(left + right) / 2];
-	while (low <= high)
+	size = 0;
+	i = 1;
+	while (i < argc)
+		size += word_cnt(argv[i++]);
+	init_stacks(a, b, size);
+	i = 1;
+	while (i < argc)
 	{
-		while (arr[low] < pivot)
-			low++;
-		while (arr[high] > pivot)
-			high--;
-		if (low <= high)
+		tmp_i = 0;
+		tmp = ft_split(argv[i++], ' ');
+		while (tmp[tmp_i])
 		{
-			ft_swap(arr + low, arr + high);
-			low++;
-			high--;
+			if (!ft_atoi2(tmp[tmp_i++], &a->stack[++a->top]) 
+				|| !check_duplicate(a))
+			    ft_print_err("Error\n");
 		}
+		ft_free_malloc(tmp, tmp_i);
 	}
-	if (left < high)
-		quick_sort(arr, left, high);
-	if (right > low)
-		quick_sort(arr, low, right);
+	swap_stack(a);
 }

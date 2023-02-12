@@ -5,106 +5,95 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/14 16:06:09 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/07 16:52:36 by cyun             ###   ########seoul.kr  */
+/*   Created: 2023/02/10 22:01:57 by cyun              #+#    #+#             */
+/*   Updated: 2023/02/12 13:19:07 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// 요소가 3개일 때 경우의 수를 정해줌
-void	sort_three_pivot(t_deque *a)
+static t_pivot	get_pivot(t_stacks *a, int size)
 {
-	int	top;
-	int	mid;
-	int	bottom;
+	t_pivot		pivot;
+	int			*arr;
+	int			term;
 
-	top = a->top->data;
-	mid = a->top->next->data;
-	bottom = a->bottom->data;
-	if (top > mid && mid < bottom && top < bottom)
-		deque_swap_ab(a);
-	if (top > mid && mid > bottom && top > bottom)
-	{
-		deque_swap_ab(a);
-		deque_rrotate_ab(a);
-	}
-	if (top > mid && mid < bottom && top > bottom)
-		deque_rotate_ab(a);
-	if (top < mid && mid > bottom && top < bottom)
-	{
-		deque_swap_ab(a);
-		deque_rotate_ab(a);
-	}
-	if (top < mid && mid > bottom && top > bottom)
-		deque_rrotate_ab(a);
+	arr = copy_arr(a, size);
+	bubble_sort(arr, size);
+	term = size / 3;
+	if (size % 3 == 2)
+		term++;
+	pivot.p1 = arr[term - 1];
+	pivot.p2 = arr[term * 2 - 1];
+	free(arr);
+	return (pivot);
 }
 
-void	divide_three_pivot(t_deque *a, t_deque *b, int pivot1, int pivot2)
+static void	divide_three(t_stacks *a, t_stacks *b)
 {
+	t_pivot		pivot;
 	int	cnt;
+	int	idx;
 
-	if (a->size > 10) // 덱의 크기가 10보다 크다면
+	idx = a->size;
+	if (idx > 5)
 	{
-		cnt = a->size;
-		while (cnt && a->size > 3)
+		pivot = get_pivot(a, a->size);
+		cnt = idx;
+		while (cnt && a->top > 2)
 		{
-			if (a->top->data <= pivot1)
+			if (a->stack[a->top] <= pivot.p1)
 			{
-				deque_push_ab(b, a);
-				deque_rotate_ab(b);
+				stack_push_ab(a, b);
+				stack_rotate_ab(b);
 			}
-			else if (a->top->data <= pivot2)
-				deque_push_ab(b, a);
+			else if (a->stack[a->top] <= pivot.p2)
+				stack_push_ab(a, b);
 			else
-				deque_rotate_ab(a);
+				stack_rotate_ab(a);
 			cnt--;
 		}
 	}
-	while (a->size > 3) // 덱 a에 3개의 요소만 남을 때 까지 push b
-		deque_push_ab(b, a);
-	if (a->size == 3) // 덱 a에 3개의 요소만 남았을 경우 정해진 알고리즘으로 정렬
-		sort_three_pivot(a);
+	while (a->top > 2)
+		stack_push_ab(a, b);
+	if (a->top == 2)
+		sort_three(a);
 }
 
-void	parse_argument(t_deque *a, t_deque *b, int argc, char **argv)
-{
-	if (argc == 1) // 인자가 1개라면 종료 
-		ft_print_err("Error\n");
-	init_deque(a, b); // 덱 구조체 초기화
-	receive_input(a, argc, argv); // 덱에 인자 입력
-	deque_is_duplicated(a); // 덱 중복 체크
-	if (deque_is_sorted(a, b)) // 덱 정렬여부 체크
-	{
-		free_node(a);
-		free_node(b);
-		exit(0);
-	}
-}
-
-void	greedy(t_deque *a, t_deque *b)
+static void	greedy(t_stacks *a, t_stacks *b)
 {
 	int	move_a;
 	int	move_b;
 
-	while (b->size)
+	while (b->top >= 0)
 	{
-		get_location(a, b, &move_a, &move_b);
+		set_min_rotate(a, b, &move_a, &move_b);
 		greedy_rotate(a, b, move_a, move_b);
-		deque_push_ab(a, b);
+		stack_push_ab(b, a);
 	}
 	last_rotate(a);
 }
 
 int	main(int argc, char **argv)
 {
-	t_deque	a;
-	t_deque	b;
+	t_stacks	a;
+	t_stacks	b;
 
-	parse_argument(&a, &b, argc, argv); // parsing
-	divide_three_pivot(&a, &b, a.size / 3 * 1, a.size / 3 * 2); // 세 부분으로 나누기
-	greedy(&a, &b); // 그리디 알고리즘
-	free_node(&a); // 덱 메모리 free
-	free_node(&b);
-	while (1);
+	if (argc < 2)
+		return (0);
+	parse_argument(&a, &b, argv, argc);
+	if (!check_sorted(&a))
+	{
+		if (a.size == 3)
+			sort_three(&a);
+		else if (a.size == 5)
+			sort_five(&a, &b);
+		else
+		{
+			divide_three(&a, &b);
+			greedy(&a, &b);
+		}
+	}
+	free(a.stack);
+	free(b.stack);
 }

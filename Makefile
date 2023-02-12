@@ -6,11 +6,11 @@ CHECKER = checker
 
 SRCS = 	mandatory/main.c \
 		mandatory/parse.c \
-		mandatory/order.c \
-		mandatory/deque_concurrent.c \
-		mandatory/deque_operation.c \
-		mandatory/deque_utils.c \
-		mandatory/deque.c
+		mandatory/greedy.c \
+		mandatory/stack_concurrent.c \
+		mandatory/stack_operation.c \
+		mandatory/utils.c \
+		mandatory/sort.c
 
 SRCSB =	bonus/checker.c \
 		bonus/deque.c \
