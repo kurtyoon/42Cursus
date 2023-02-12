@@ -6,13 +6,13 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:10:14 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 19:53:00 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 20:06:35 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// 스택 정렬 체큰
+// 스택 정렬 체크
 int	check_sorted(t_stack *a)
 {
 	int	i;
