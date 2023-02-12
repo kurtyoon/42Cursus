@@ -6,13 +6,13 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:51:32 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 14:50:35 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 18:57:12 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/checker.h"
 
-void	init_stacks(t_stacks *a, t_stacks *b, int size)
+void	init_stacks(t_stack *a, t_stack *b, int size)
 {
 	a->stack = (int *)malloc(sizeof(int) * size);
 	b->stack = (int *)malloc(sizeof(int) * size);
@@ -26,11 +26,11 @@ void	init_stacks(t_stacks *a, t_stacks *b, int size)
 		exit(1);
 }
 
-void	swap_stack(t_stacks *a)
+void	swap_stack(t_stack *a)
 {
-	int left;
-	int right;
-	int tmp;
+	int	left;
+	int	right;
+	int	tmp;
 
 	left = 0;
 	right = a->top;
@@ -44,7 +44,7 @@ void	swap_stack(t_stacks *a)
 	}
 }
 
-int	check_duplicate(t_stacks *a)
+int	check_duplicate(t_stack *a)
 {
 	int	i;
 
@@ -58,7 +58,7 @@ int	check_duplicate(t_stacks *a)
 	return (1);
 }
 
-int	check_sorted(t_stacks *a)
+int	check_sorted(t_stack *a)
 {
 	int	i;
 
@@ -74,10 +74,12 @@ int	check_sorted(t_stacks *a)
 
 int	main(int argc, char **argv)
 {
-	t_stacks		a;
-	t_stacks		b;
+	t_stack		a;
+	t_stack		b;
 	char		**commands;
 
+	if (argc < 2)
+		return (0);
 	parse_argument(&a, &b, argc, argv);
 	commands = read_commands();
 	execute_commands(&a, &b, commands);

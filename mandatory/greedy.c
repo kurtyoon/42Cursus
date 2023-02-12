@@ -6,13 +6,13 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:11:33 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/10 22:13:38 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 18:31:57 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	set_min_rotate(t_stacks *a, t_stacks *b, int *move_a, int *move_b)
+void	set_min_rotate(t_stack *a, t_stack *b, int *move_a, int *move_b)
 {
 	int	i;
 	int	b_size;
@@ -51,7 +51,7 @@ int	compare_cnt(int pos_a, int pos_b, int move_a, int move_b)
 	return (0);
 }
 
-void	greedy_rotate(t_stacks *a, t_stacks *b, int move_a, int move_b)
+void	greedy_rotate(t_stack *a, t_stack *b, int move_a, int move_b)
 {
 	if (move_a == move_b)
 	{
@@ -66,21 +66,21 @@ void	greedy_rotate(t_stacks *a, t_stacks *b, int move_a, int move_b)
 	}
 	while (move_a > 0)
 	{
-		stack_rotate_ab(a);
+		stack_rotate_ab(a, 1);
 		move_a--;
 	}
 	while (move_a++ < 0)
-		stack_rrotate_ab(a);
+		stack_rrotate_ab(a, 1);
 	while (move_b > 0)
 	{
-		stack_rotate_ab(b);
+		stack_rotate_ab(b, 1);
 		move_b--;
 	}
 	while (move_b++ < 0)
-		stack_rrotate_ab(b);
+		stack_rrotate_ab(b, 1);
 }
 
-void	last_rotate(t_stacks *a)
+void	last_rotate(t_stack *a)
 {
 	int	pos_min;
 	int	idx;
@@ -97,16 +97,16 @@ void	last_rotate(t_stacks *a)
 	if (pos_min >= a->top / 2)
 	{
 		while (a->stack[0] < a->stack[a->top])
-			stack_rrotate_ab(a);
+			stack_rrotate_ab(a, 1);
 	}
 	else
 	{
 		while (a->stack[0] < a->stack[a->top])
-			stack_rotate_ab(a);
+			stack_rotate_ab(a, 1);
 	}
 }
 
-int	get_a_position(t_stacks *a, int num)
+int	get_a_position(t_stack *a, int num)
 {
 	int	cur;
 	int	pos_a;
@@ -135,3 +135,4 @@ int	get_a_position(t_stacks *a, int num)
 		pos_a = pos_a - (a->top + 1);
 	return (pos_a);
 }
+ 

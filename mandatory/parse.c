@@ -6,13 +6,13 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:04:10 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 15:00:27 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 19:00:35 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	check_duplicate(t_stacks *a)
+int	check_duplicate(t_stack *a)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ int	word_cnt(const char *str)
 	return (size);
 }
 
-void	init_stacks(t_stacks *a, t_stacks *b, int size)
+void	init_stacks(t_stack *a, t_stack *b, int size)
 {
 	a->stack = (int *)malloc(sizeof(int) * size);
 	b->stack = (int *)malloc(sizeof(int) * size);
@@ -63,7 +63,7 @@ void	init_stacks(t_stacks *a, t_stacks *b, int size)
 		exit(1);
 }
 
-void	swap_stack(t_stacks *a)
+void	swap_stack(t_stack *a)
 {
 	int	left;
 	int	right;
@@ -81,7 +81,7 @@ void	swap_stack(t_stacks *a)
 	}
 }
 
-void	parse_argument(t_stacks *a, t_stacks *b, char **argv, int argc)
+void	parse_argument(t_stack *a, t_stack *b, char **argv, int argc)
 {
 	int		i;
 	int		tmp_i;
@@ -100,9 +100,9 @@ void	parse_argument(t_stacks *a, t_stacks *b, char **argv, int argc)
 		tmp = ft_split(argv[i++], ' ');
 		while (tmp[tmp_i])
 		{
-			if (!append_data(tmp[tmp_i++], &a->stack[++a->top]) 
+			if (!append_data(tmp[tmp_i++], &a->stack[++a->top])
 				|| !check_duplicate(a))
-			    ft_print_err("Error\n");
+				ft_print_err("Error\n");
 		}
 		ft_free_malloc(tmp, tmp_i);
 	}

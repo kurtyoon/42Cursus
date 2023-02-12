@@ -38,15 +38,11 @@ $(NAME): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -I$(PRINTF_DIR) -I$(GNL_DIR) -c $< -o $@
 
-bonus: $(NAME) $(CHECKER)
-
-$(NAME): $(OBJS)
-	make -C $(PRINTF_DIR) all
-	make -C $(GNL_DIR) all
-	$(CC) $(CFLAGS) -L$(PRINTF_DIR) -l$(PRINTF_NAME) \
-		 -L$(GNL_DIR) -l$(GNL_NAME) $^ -o $@
+bonus: $(CHECKER)
 
 $(CHECKER): $(OBJSB)
+	make -C $(PRINTF_DIR) all
+	make -C $(GNL_DIR) all
 	$(CC) $(CFLAGS) -L$(PRINTF_DIR) -l$(PRINTF_NAME) \
 		 -L$(GNL_DIR) -l$(GNL_NAME) $^ -o $@
 

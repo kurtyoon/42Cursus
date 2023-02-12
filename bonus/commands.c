@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 14:47:33 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 14:56:59 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 18:56:44 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	init_var(char **tmp, char **commands, char ***result)
 	*result = NULL;
 }
 
-int	classify_command(t_stacks *a, t_stacks *b, char *command)
+int	classify_command(t_stack *a, t_stack *b, char *command)
 {
 	if (ft_strcmp(command, "sa") == 0)
 		stack_swap_ab(a);
@@ -51,7 +51,7 @@ int	classify_command(t_stacks *a, t_stacks *b, char *command)
 	return (0);
 }
 
-char	**read_commands()
+char	**read_commands(void)
 {
 	char	*commands;
 	char	*tmp;
@@ -79,7 +79,7 @@ char	**read_commands()
 	return (result);
 }
 
-void	execute_commands(t_stacks *a, t_stacks *b, char **commands)
+void	execute_commands(t_stack *a, t_stack *b, char **commands)
 {
 	char	**p;
 
@@ -90,7 +90,7 @@ void	execute_commands(t_stacks *a, t_stacks *b, char **commands)
 	{
 		if (classify_command(a, b, *commands) == -1)
 		{
-			ft_printf("whyError\n");
+			ft_printf("Error\n");
 			exit(1);
 		}
 		free(*commands);
@@ -99,9 +99,9 @@ void	execute_commands(t_stacks *a, t_stacks *b, char **commands)
 	free(p);
 }
 
-void	operator(t_stacks *a, t_stacks *b, char *commands)
+void	operator(t_stack *a, t_stack *b, char *commands)
 {
 	if (classify_command(a, b, commands) == -1)
-		ft_print_err("cmdError\n");
+		ft_print_err("Error\n");
 	free(commands);
 }

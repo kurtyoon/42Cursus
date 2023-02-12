@@ -6,13 +6,13 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:01:57 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 13:19:07 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 19:03:18 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static t_pivot	get_pivot(t_stacks *a, int size)
+static t_pivot	get_pivot(t_stack *a, int size)
 {
 	t_pivot		pivot;
 	int			*arr;
@@ -29,11 +29,11 @@ static t_pivot	get_pivot(t_stacks *a, int size)
 	return (pivot);
 }
 
-static void	divide_three(t_stacks *a, t_stacks *b)
+static void	divide_three(t_stack *a, t_stack *b)
 {
 	t_pivot		pivot;
-	int	cnt;
-	int	idx;
+	int			cnt;
+	int			idx;
 
 	idx = a->size;
 	if (idx > 5)
@@ -45,12 +45,12 @@ static void	divide_three(t_stacks *a, t_stacks *b)
 			if (a->stack[a->top] <= pivot.p1)
 			{
 				stack_push_ab(a, b);
-				stack_rotate_ab(b);
+				stack_rotate_ab(b, 1);
 			}
 			else if (a->stack[a->top] <= pivot.p2)
 				stack_push_ab(a, b);
 			else
-				stack_rotate_ab(a);
+				stack_rotate_ab(a, 1);
 			cnt--;
 		}
 	}
@@ -60,7 +60,7 @@ static void	divide_three(t_stacks *a, t_stacks *b)
 		sort_three(a);
 }
 
-static void	greedy(t_stacks *a, t_stacks *b)
+static void	greedy(t_stack *a, t_stack *b)
 {
 	int	move_a;
 	int	move_b;
@@ -76,8 +76,8 @@ static void	greedy(t_stacks *a, t_stacks *b)
 
 int	main(int argc, char **argv)
 {
-	t_stacks	a;
-	t_stacks	b;
+	t_stack	a;
+	t_stack	b;
 
 	if (argc < 2)
 		return (0);

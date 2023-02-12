@@ -6,13 +6,13 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:09:01 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 15:00:36 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 19:03:27 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	*copy_arr(t_stacks *a, int size)
+int	*copy_arr(t_stack *a, int size)
 {
 	int	*arr;
 	int	idx;
@@ -28,30 +28,28 @@ int	*copy_arr(t_stacks *a, int size)
 
 int	append_data(char *str, int *result)
 {
-	long long	tmp;
+	int			i;
+	long long	num;
 	int			sign;
 
-	tmp = 0;
+	i = 0;
+	num = 0;
 	sign = 1;
-	while ((9 <= *str && *str <= 13) || *str == ' ')
-		str++;
-	if (*str == '+' || *str == '-')
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
 	}
-	if (!*str)
+	if (!str[i])
 		return (0);
-	while ('0' <= *str && *str <= '9')
-	{
-		tmp *= 10;
-		tmp += (*str - '0') * sign;
-		str++;
-	}
-	if (*str != '\0' || tmp > 2147483647 || tmp < -2147483648)
+	while (str[i] >= '0' && str[i] <= '9')
+		num = num * 10 + (str[i++] - '0') * sign;
+	if (str[i] != '\0' || num > 2147483647 || num < -2147483648)
 		return (0);
-	*result = tmp;
+	*result = num;
 	return (1);
 }
 

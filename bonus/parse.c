@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 14:45:42 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 15:04:23 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 18:57:01 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	word_cnt(const char *str)
 		str++;
 	}
 	if (!size)
-		ft_print_err("sizeError\n");
+		ft_print_err("Error\n");
 	return (size);
 }
 
@@ -77,7 +77,7 @@ int	append_data(char *str, int *result)
 	return (1);
 }
 
-void	parse_argument(t_stacks *a, t_stacks *b, int argc, char **argv)
+void	parse_argument(t_stack *a, t_stack *b, int argc, char **argv)
 {
 	int		i;
 	int		tmp_i;
@@ -86,8 +86,6 @@ void	parse_argument(t_stacks *a, t_stacks *b, int argc, char **argv)
 
 	size = 0;
 	i = 1;
-	if (argc == 1)
-		exit(0);
 	while (i < argc)
 		size += word_cnt(argv[i++]);
 	init_stacks(a, b, size);
@@ -98,13 +96,9 @@ void	parse_argument(t_stacks *a, t_stacks *b, int argc, char **argv)
 		tmp = ft_split(argv[i++], ' ');
 		while (tmp[tmp_i])
 		{
-			if (!append_data(tmp[tmp_i], &a->stack[++a->top]))
-				ft_print_err("atoiError\n");
-			if (!check_duplicate(a))
-				ft_print_err("dupError\n");
-			// if (!ft_atoi2(tmp[tmp_i], &a->stack[++a->top])
-			// 	|| !check_duplicate(a))
-			// 	ft_print_err("atoiError\n");
+			if (!append_data(tmp[tmp_i++], &a->stack[++a->top])
+				|| !check_duplicate(a))
+				ft_print_err("Error\n");
 		}
 		ft_free_malloc(tmp, tmp_i);
 	}
