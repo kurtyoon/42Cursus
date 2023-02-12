@@ -5,128 +5,108 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/14 16:48:31 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 13:17:59 by cyun             ###   ########seoul.kr  */
+/*   Created: 2023/02/12 14:45:42 by cyun              #+#    #+#             */
+/*   Updated: 2023/02/12 15:04:23 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/checker.h"
 
-void	receive_input(t_deque *a, int argc, char **argv)
+int	word_cnt(const char *str)
 {
-	char	**p;
-	char	**save_p;
-	int		i;
+	size_t	size;
+	int		flag;
 
-	if (argc == 2)
+	size = 0;
+	flag = 1;
+	while (*str)
 	{
-		p = ft_split(argv[1], ' ');
-		save_p = p;
-		while (*p)
+		if (flag && *str != ' ')
 		{
-			append_data(a, ft_atoi(*p));
-			free(*p);
-			p++;
+			size++;
+			flag = 0;
 		}
-		free(save_p);
+		if (*str == ' ')
+			flag = 1;
+		str++;
 	}
-	else
-	{
-		i = 0;
-		while (++i < argc)
-			append_data(a, ft_atoi(argv[i]));
-	}
+	if (!size)
+		ft_print_err("sizeError\n");
+	return (size);
 }
 
-void	append_data(t_deque *x, int data)
+void	ft_free_malloc(char **result, size_t k)
 {
-	t_node	*new_node;
+	size_t	i;
 
-	new_node = malloc(sizeof(t_node));
-	if (new_node == NULL)
-		exit(1);
-	new_node->prev = NULL;
-	new_node->next = NULL;
-	new_node->data = data;
-	if (!(x->top))
+	i = 0;
+	while (i < k)
 	{
-		x->top = new_node;
-		x->bottom = new_node;
+		free(result[i]);
+		i++;
 	}
-	else
-	{
-		x->bottom->next = new_node;
-		new_node->prev = x->bottom;
-		new_node->next = x->top;
-		x->top->prev = new_node;
-		x->bottom = new_node;
-	}
-	x->size++;
+	free(result);
 }
 
-static void	init_var(char **tmp, char **commands, char ***result)
+int	append_data(char *str, int *result)
 {
-	*tmp = malloc(sizeof(char));
-	if (*tmp == NULL)
-		exit(1);
-	*(*tmp) = '\0';
-	*commands = NULL;
-	*result = NULL;
+	long long	tmp;
+	int			sign;
+
+	tmp = 0;
+	sign = 1;
+	while ((9 <= *str && *str <= 13) || *str == ' ')
+		str++;
+	if (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	if (!*str)
+		return (0);
+	while ('0' <= *str && *str <= '9')
+	{
+		tmp *= 10;
+		tmp += (*str - '0') * sign;
+		str++;
+	}
+	if (*str != '\0' || tmp > 2147483647 || tmp < -2147483648)
+		return (0);
+	*result = tmp;
+	return (1);
 }
 
-char	**read_commands(void)
+void	parse_argument(t_stacks *a, t_stacks *b, int argc, char **argv)
 {
-	char	*commands;
-	char	*tmp;
-	char	*buff;
-	char	**result;
+	int		i;
+	int		tmp_i;
+	int		size;
+	char	**tmp;
 
-	init_var(&tmp, &commands, &result);
-	while (1)
+	size = 0;
+	i = 1;
+	if (argc == 1)
+		exit(0);
+	while (i < argc)
+		size += word_cnt(argv[i++]);
+	init_stacks(a, b, size);
+	i = 1;
+	while (i < argc)
 	{
-		buff = get_next_line(0);
-		if (buff == NULL)
-			break ;
-		commands = ft_strjoin(tmp, buff);
-		free(tmp);
-		free(buff);
-		tmp = commands;
+		tmp_i = 0;
+		tmp = ft_split(argv[i++], ' ');
+		while (tmp[tmp_i])
+		{
+			if (!append_data(tmp[tmp_i], &a->stack[++a->top]))
+				ft_print_err("atoiError\n");
+			if (!check_duplicate(a))
+				ft_print_err("dupError\n");
+			// if (!ft_atoi2(tmp[tmp_i], &a->stack[++a->top])
+			// 	|| !check_duplicate(a))
+			// 	ft_print_err("atoiError\n");
+		}
+		ft_free_malloc(tmp, tmp_i);
 	}
-	if (commands)
-	{
-		result = ft_split(commands, '\n');
-		free(commands);
-	}
-	else
-		free(tmp);
-	return (result);
-}
-
-int	classify_command(t_stacks *a, t_stacks *b, char *command)
-{
-	if (ft_strcmp(command, "sa") == 0)
-		stack_swap_ab(a);
-	else if (ft_strcmp(command, "sb") == 0)
-		stack_swap_ab(b);
-	else if (ft_strcmp(command, "ss") == 0)
-		stack_swap_ss(a, b);
-	else if (ft_strcmp(command, "pa") == 0)
-		stack_push_ab(b, a);
-	else if (ft_strcmp(command, "pb") == 0)
-		stack_push_ab(a, b);
-	else if (ft_strcmp(command, "ra") == 0)
-		stack_rotate_ab(a);
-	else if (ft_strcmp(command, "rb") == 0)
-		stack_rotate_ab(b);
-	else if (ft_strcmp(command, "rr") == 0)
-		stack_rotate_rr(a, b);
-	else if (ft_strcmp(command, "rra") == 0)
-		stack_rrotate_ab(a);
-	else if (ft_strcmp(command, "rrb") == 0)
-		stack_rrotate_ab(b);
-	else if (ft_strcmp(command, "rrr") == 0)
-		stack_rrotate_rrr(a, b);
-	else
-		return (-1);
-	return (0);
+	swap_stack(a);
 }

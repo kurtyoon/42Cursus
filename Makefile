@@ -13,10 +13,9 @@ SRCS = 	mandatory/main.c \
 		mandatory/sort.c
 
 SRCSB =	bonus/checker.c \
-		bonus/deque.c \
-		bonus/deque_concurrent.c \
-		bonus/deque_operation.c \
-		bonus/parse_utils.c \
+		bonus/stack_concurrent.c \
+		bonus/stack_operation.c \
+		bonus/commands.c \
 		bonus/parse.c
 
 OBJS = $(SRCS:.c=.o)

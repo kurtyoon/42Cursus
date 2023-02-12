@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:04:10 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 13:19:16 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 15:00:27 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	parse_argument(t_stacks *a, t_stacks *b, char **argv, int argc)
 		tmp = ft_split(argv[i++], ' ');
 		while (tmp[tmp_i])
 		{
-			if (!ft_atoi2(tmp[tmp_i++], &a->stack[++a->top]) 
+			if (!append_data(tmp[tmp_i++], &a->stack[++a->top]) 
 				|| !check_duplicate(a))
 			    ft_print_err("Error\n");
 		}

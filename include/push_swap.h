@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:36:05 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 13:19:29 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 15:00:43 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	swap_stack(t_stacks *a);
 void	parse_argument(t_stacks *a, t_stacks *b, char **argv, int argc);
 
 int	    *copy_arr(t_stacks *a, int size);
-int	    ft_atoi2(char *str, int *result);
+int	    append_data(char *str, int *result);
 int	    ft_free_malloc(char **result, size_t k);
 
 int		check_sorted(t_stacks *a);

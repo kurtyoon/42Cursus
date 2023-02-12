@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:09:01 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/10 22:09:17 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/12 15:00:36 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	*copy_arr(t_stacks *a, int size)
 	return (arr);
 }
 
-int	ft_atoi2(char *str, int *result)
+int	append_data(char *str, int *result)
 {
 	long long	tmp;
 	int			sign;
