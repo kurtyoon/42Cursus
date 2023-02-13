@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:04:10 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 19:51:01 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/13 16:11:13 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	word_cnt(const char *str)
 			flag = 1;
 		str++;
 	}
-	if (!size)
-		ft_print_err("Error\n");
 	return (size);
 }
 
