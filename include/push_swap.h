@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 09:36:05 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 19:08:35 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/14 16:42:50 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,25 @@ typedef struct s_pivot
 	int			p2;
 }				t_pivot;
 
+// parse.c
 int		check_duplicate(t_stack *a);
-int		word_cnt(const char *str);
 void	init_stacks(t_stack *a, t_stack *b, int size);
 void	swap_stack(t_stack *a);
 void	parse_argument(t_stack *a, t_stack *b, char **argv, int argc);
 
+// utils.c
 int		*copy_arr(t_stack *a, int size);
 int		append_data(char *str, int *result);
 int		ft_free_malloc(char **result, size_t k);
+int		compare_number(int a, int b, int c);
 
+// sort.c
 int		check_sorted(t_stack *a);
 void	bubble_sort(int *arr, int size);
 void	sort_three(t_stack *a);
 void	sort_five(t_stack *a, t_stack *b);
 
+// greedy.c
 void	set_min_rotate(t_stack *a, t_stack *b, int *move_a, int *move_b);
 int		compare_cnt(int pos_a, int pos_b, int move_a, int move_b);
 void	greedy_rotate(t_stack *a, t_stack *b, int move_a, int move_b);

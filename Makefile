@@ -51,8 +51,8 @@ $(CHECKER): $(OBJSB)
 
 clean:
 	$(RM) $(OBJS) $(OBJSB)
-	make -C $(GNL_DIR) clean
-	make -C $(PRINTF_DIR) clean
+	make -C $(GNL_DIR) fclean
+	make -C $(PRINTF_DIR) fclean
 
 fclean: clean
 	$(RM) $(NAME) $(CHECKER)

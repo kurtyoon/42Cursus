@@ -6,13 +6,13 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 14:45:42 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 18:57:01 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/14 16:19:21 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/checker.h"
 
-int	word_cnt(const char *str)
+int	find_size(const char *str)
 {
 	size_t	size;
 	int		flag;
@@ -87,7 +87,7 @@ void	parse_argument(t_stack *a, t_stack *b, int argc, char **argv)
 	size = 0;
 	i = 1;
 	while (i < argc)
-		size += word_cnt(argv[i++]);
+		size += find_size(argv[i++]);
 	init_stacks(a, b, size);
 	i = 1;
 	while (i < argc)

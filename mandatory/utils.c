@@ -6,13 +6,12 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:09:01 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 20:00:03 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/14 16:42:14 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// 스택 -> 일반 배열로 복사
 int	*copy_arr(t_stack *a, int size)
 {
 	int	*arr;
@@ -22,12 +21,22 @@ int	*copy_arr(t_stack *a, int size)
 	if (!arr)
 		exit(1);
 	idx = -1;
-	while (++idx < size)
-		arr[idx] = a->stack[a->top - idx];
+	while (++idx < a->top)
+		arr[idx] = a->stack[idx];
 	return (arr);
 }
 
-// atoi 함수
+int	compare_number(int a, int b, int c)
+{
+	if (a > c && b > c && a > b)
+		return (1);
+	if (a < c && b > c && a < b)
+		return (1);
+	if (a < c && b < c && a > b)
+		return (1);
+	return (0);
+}
+
 int	append_data(char *str, int *result)
 {
 	int			i;
@@ -55,7 +64,6 @@ int	append_data(char *str, int *result)
 	return (1);
 }
 
-// 이차원 배열 해제
 int	ft_free_malloc(char **result, size_t k)
 {
 	size_t	i;

@@ -6,13 +6,12 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:04:10 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/13 16:11:13 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/14 16:21:23 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// 스택 중복 체크
 int	check_duplicate(t_stack *a)
 {
 	int	i;
@@ -27,7 +26,7 @@ int	check_duplicate(t_stack *a)
 	return (1);
 }
 
-int	word_cnt(const char *str)
+int	find_size(const char *str)
 {
 	size_t	size;
 	int		flag;
@@ -48,7 +47,6 @@ int	word_cnt(const char *str)
 	return (size);
 }
 
-// 스택 초기화
 void	init_stacks(t_stack *a, t_stack *b, int size)
 {
 	a->stack = (int *)malloc(sizeof(int) * size);
@@ -63,7 +61,6 @@ void	init_stacks(t_stack *a, t_stack *b, int size)
 		exit(1);
 }
 
-// 스택 반전
 void	swap_stack(t_stack *a)
 {
 	int	left;
@@ -92,8 +89,8 @@ void	parse_argument(t_stack *a, t_stack *b, char **argv, int argc)
 	size = 0;
 	i = 1;
 	while (i < argc)
-		size += word_cnt(argv[i++]); // 스택의 크기 구분
-	init_stacks(a, b, size); // 스택 초기화
+		size += find_size(argv[i++]);
+	init_stacks(a, b, size);
 	i = 1;
 	while (i < argc)
 	{
@@ -101,11 +98,11 @@ void	parse_argument(t_stack *a, t_stack *b, char **argv, int argc)
 		tmp = ft_split(argv[i++], ' ');
 		while (tmp[tmp_i])
 		{
-			if (!append_data(tmp[tmp_i++], &a->stack[++a->top]) // atoi & 중복체크
+			if (!append_data(tmp[tmp_i++], &a->stack[++a->top])
 				|| !check_duplicate(a))
 				ft_print_err("Error\n");
 		}
-		ft_free_malloc(tmp, tmp_i); // 메모리 해제
+		ft_free_malloc(tmp, tmp_i);
 	}
-	swap_stack(a); // 스택 반전 -> top을 가장 왼쪽으로 이동
+	swap_stack(a);
 }

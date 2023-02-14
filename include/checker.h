@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 17:05:16 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 19:08:54 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/14 16:17:13 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,10 @@ void	stack_swap_ss(t_stack *a, t_stack *b);
 int		classify_command(t_stack *a, t_stack *b, char *command);
 char	**read_commands(void);
 void	execute_commands(t_stack *a, t_stack *b, char **commands);
-void	operator(t_stack *a, t_stack *b, char *commands);
 
 // parse.c
 void	parse_argument(t_stack *a, t_stack *b, int argc, char **argv);
-int		word_cnt(const char *str);
+int		find_size(const char *str);
 void	ft_free_malloc(char **result, size_t k);
 int		append_data(char *str, int *result);
 

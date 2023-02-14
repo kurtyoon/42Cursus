@@ -6,11 +6,46 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:11:33 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 19:57:50 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/14 16:41:42 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+int	get_a_position(t_stack *a, int num)
+{
+	int	cur;
+	int	pos_a;
+	int	prev;
+
+	cur = a->top;
+	pos_a = 0;
+	while (cur >= 0)
+	{
+		prev = cur + 1;
+		if (pos_a == 0)
+			prev = 0;
+		if (compare_number(a->stack[prev], a->stack[cur], num))
+			break ;
+		pos_a++;
+		cur--;
+	}
+	if (pos_a > (a->top + 1) / 2)
+		pos_a = pos_a - (a->top + 1);
+	return (pos_a);
+}
+
+int	compare_cnt(int pos_a, int pos_b, int move_a, int move_b)
+{
+	int	cnt;
+	int	tmp_cnt;
+
+	tmp_cnt = ft_abs(pos_a) + ft_abs(pos_b);
+	cnt = ft_abs(move_a) + ft_abs(move_b);
+	if (tmp_cnt < cnt)
+		return (1);
+	return (0);
+}
 
 void	set_min_rotate(t_stack *a, t_stack *b, int *move_a, int *move_b)
 {
@@ -37,18 +72,6 @@ void	set_min_rotate(t_stack *a, t_stack *b, int *move_a, int *move_b)
 		b_idx--;
 		i++;
 	}
-}
-
-int	compare_cnt(int pos_a, int pos_b, int move_a, int move_b)
-{
-	int	cnt;
-	int	tmp_cnt;
-
-	tmp_cnt = ft_abs(pos_a) + ft_abs(pos_b);
-	cnt = ft_abs(move_a) + ft_abs(move_b);
-	if (tmp_cnt < cnt)
-		return (1);
-	return (0);
 }
 
 void	greedy_rotate(t_stack *a, t_stack *b, int move_a, int move_b)
@@ -105,34 +128,3 @@ void	last_rotate(t_stack *a)
 			stack_rotate_ab(a, 1);
 	}
 }
-
-int	get_a_position(t_stack *a, int num)
-{
-	int	cur;
-	int	pos_a;
-	int	prev;
-
-	cur = a->top;
-	pos_a = 0;
-	while (cur >= 0)
-	{
-		prev = cur + 1;
-		if (pos_a == 0)
-			prev = 0;
-		if (a->stack[prev] > num && \
-			a->stack[cur] > num && a->stack[prev] > a->stack[cur])
-			break ;
-		if (a->stack[prev] < num && \
-			a->stack[cur] > num && a->stack[prev] < a->stack[cur])
-			break ;
-		if (a->stack[prev] < num && \
-			a->stack[cur] < num && a->stack[prev] > a->stack[cur])
-			break ;
-		pos_a++;
-		cur--;
-	}
-	if (pos_a > (a->top + 1) / 2)
-		pos_a = pos_a - (a->top + 1);
-	return (pos_a);
-}
- 

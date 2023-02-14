@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 14:47:33 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/12 18:56:44 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/14 16:43:10 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	init_var(char **tmp, char **commands, char ***result)
 {
-	*tmp = malloc(sizeof(char));
+	*tmp = (char *)malloc(sizeof(char));
 	if (*tmp == NULL)
 		exit(1);
 	*(*tmp) = '\0';
@@ -81,11 +81,11 @@ char	**read_commands(void)
 
 void	execute_commands(t_stack *a, t_stack *b, char **commands)
 {
-	char	**p;
+	char	**tmp;
 
 	if (commands == NULL)
 		return ;
-	p = commands;
+	tmp = commands;
 	while (*commands)
 	{
 		if (classify_command(a, b, *commands) == -1)
@@ -96,12 +96,5 @@ void	execute_commands(t_stack *a, t_stack *b, char **commands)
 		free(*commands);
 		commands++;
 	}
-	free(p);
-}
-
-void	operator(t_stack *a, t_stack *b, char *commands)
-{
-	if (classify_command(a, b, commands) == -1)
-		ft_print_err("Error\n");
-	free(commands);
+	free(tmp);
 }
