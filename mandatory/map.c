@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 11:27:51 by cyun              #+#    #+#             */
-/*   Updated: 2023/01/19 18:23:47 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/16 19:18:38 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	check_map_line(t_game *game, char *line, int check_wall)
 
 	i = -1;
 	len = ft_strlen(line) - 1;
+	if (line[len] != '\n')
+		close_game_with_error(3);
 	if (len != game->width)
 		close_game_with_error(3);
 	while (line[++i] && line[i] != '\n')
