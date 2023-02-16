@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:51:32 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/14 16:19:02 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/17 00:20:38 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,11 @@ int	main(int argc, char **argv)
 {
 	t_stack		a;
 	t_stack		b;
-	char		**commands;
 
 	if (argc < 2)
 		return (0);
 	parse_argument(&a, &b, argc, argv);
-	commands = read_commands();
-	execute_commands(&a, &b, commands);
+	receive_command(&a, &b);
 	if (check_sorted(&a))
 		ft_printf("OK\n");
 	else

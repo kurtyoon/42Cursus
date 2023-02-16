@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:04:10 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/14 16:21:23 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/16 23:58:48 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	find_size(const char *str)
 			flag = 1;
 		str++;
 	}
+	if (!size)
+		ft_print_err("Error\n");
 	return (size);
 }
 
