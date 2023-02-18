@@ -6,7 +6,7 @@
 /*   By: cyun <cyun@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 22:09:01 by cyun              #+#    #+#             */
-/*   Updated: 2023/02/18 13:41:54 by cyun             ###   ########seoul.kr  */
+/*   Updated: 2023/02/18 13:59:07 by cyun             ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	*copy_arr(t_stack *a, int size)
 	if (!arr)
 		exit(1);
 	idx = -1;
-	while (++idx < a->top)
-		arr[idx] = a->stack[a->top - idx];
+	while (++idx < size)
+		arr[idx] = a->stack[idx];
 	return (arr);
 }
 
